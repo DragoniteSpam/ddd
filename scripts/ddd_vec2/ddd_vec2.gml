@@ -48,7 +48,14 @@ function ddd_vec2_minus_infinity() {
 #endregion
 
 #region Basic arithmetic
-function ddd_vec2_add(a, b) {
+function ddd_vec2_add(vec2, operand) {
+    if (is_numeric(operand)) {
+        return ddd_vec2_add_scalar(vec2, operand);
+    }
+    return ddd_vec2_add_vec2(vec2, operand);
+}
+
+function ddd_vec2_add_vec2(a, b) {
     return [a[0] + b[0], a[1] + b[1]];
 }
 
@@ -56,7 +63,14 @@ function ddd_vec2_add_scalar(vec2, scalar) {
     return [vec2[0] + scalar, vec2[1] + scalar];
 }
 
-function ddd_vec2_sub(a, b) {
+function ddd_vec2_sub(vec2, operand) {
+    if (is_numeric(operand)) {
+        return ddd_vec2_sub_scalar(vec2, operand);
+    }
+    return ddd_vec2_sub_vec2(vec2, operand);
+}
+
+function ddd_vec2_sub_vec2(a, b) {
     return [a[0] - b[0], a[1] - b[1]];
 }
 
@@ -64,7 +78,14 @@ function ddd_vec2_sub_scalar(vec2, scalar) {
     return [vec2[0] - scalar, vec2[1] - scalar];
 }
 
-function ddd_vec2_mul(a, b) {
+function ddd_vec2_mul(vec2, operand) {
+    if (is_numeric(operand)) {
+        return ddd_vec2_mul_scalar(vec2, operand);
+    }
+    return ddd_vec2_mul_vec2(vec2, operand);
+}
+
+function ddd_vec2_mul_vec2(a, b) {
     return [a[0] * b[0], a[1] * b[1]];
 }
 
@@ -72,7 +93,14 @@ function ddd_vec2_mul_scalar(vec2, scalar) {
     return [vec2[0] * scalar, vec2[1] * scalar];
 }
 
-function ddd_vec2_div(a, b) {
+function ddd_vec2_div(vec2, operand) {
+    if (is_numeric(operand)) {
+        return ddd_vec2_div_scalar(vec2, operand);
+    }
+    return ddd_vec2_div_vec2(vec2, operand);
+}
+
+function ddd_vec2_div_vec2(a, b) {
     return [a[0] / b[0], a[1] / b[1]];
 }
 
@@ -86,10 +114,6 @@ function ddd_vec2_clamp(vec2, a, b) {
     return [clamp(vec2[0], a[0], b[0]), clamp(vec2[1], a[1], b[1])];
 }
 
-function ddd_vec2_clamp_scalar(vec2, a, b) {
-    return [clamp(vec2[0], a, b), clamp(vec2, a, b)];
-}
-
 function ddd_vec2_clamp_magnitude(vec2, mag) {
     var d = point_distance(0, 0, vec2[0], vec2[1]) / mag;
     return [vec2[0] / d, vec2[1] / d];
@@ -99,16 +123,8 @@ function ddd_vec2_min(vec2, value) {
     return [min(vec2[0], value[0]), min(vec2[1], value[1])];
 }
 
-function ddd_vec2_min_scalar(vec2, value) {
-    return [min(vec2[0], value), min(vec2[1], value)];
-}
-
 function ddd_vec2_max(vec2, value) {
     return [max(vec2[0], value[0]), max(vec2[1], value[1])];
-}
-
-function ddd_vec2_max_scalar(vec2, value) {
-    return [max(vec2[0], value), max(vec2[1], value)];
 }
 #endregion
 
@@ -139,10 +155,6 @@ function ddd_vec2_mag(vec2) {
     return point_distance(0, 0, vec2[0], vec2[1]);
 }
 
-function ddd_vec2_mag_scalar(a, b) {
-    return point_distance(a[0], a[1], b[0], b[1]);
-}
-
 function ddd_vec2_dot(a, b) {
     return dot_product(a[0], a[1], b[0], b[1]);
 }
@@ -166,10 +178,6 @@ function ddd_vec2_project(vec2, dir) {
 
 function ddd_vec2_lerp(vec2, target, amount) {
     return [lerp(vec2[0], target[0], amount[0]), lerp(vec2[1], target[1], amount[1])];
-}
-
-function ddd_vec2_lerp_scalar(vec2, target, amount) {
-    return [lerp(vec2[0], target[1], amount), lerp(vec2[1], target[1], amount)];
 }
 
 function ddd_vec2_angle(vec2, value) {
