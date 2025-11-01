@@ -9,7 +9,9 @@
     "name":"Default",
   },
   "defaultScriptType":1,
-  "Folders":[],
+  "Folders":[
+    {"$GMFolder":"","%Name":"Matrix Builders","folderPath":"folders/Matrix Builders.yy","name":"Matrix Builders","resourceType":"GMFolder","resourceVersion":"2.0",},
+  ],
   "ForcedPrefabProjectReferences":[],
   "IncludedFiles":[],
   "isEcma":false,
@@ -20,6 +22,10 @@
   "name":"ddd",
   "resources":[
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
+    {"id":{"name":"ddd_matrix_build_lookat","path":"scripts/ddd_matrix_build_lookat/ddd_matrix_build_lookat.yy",},},
+    {"id":{"name":"ddd_matrix_build_projection_ortho","path":"scripts/ddd_matrix_build_projection_ortho/ddd_matrix_build_projection_ortho.yy",},},
+    {"id":{"name":"ddd_matrix_build_projection_perspective_fov","path":"scripts/ddd_matrix_build_projection_perspective_fov/ddd_matrix_build_projection_perspective_fov.yy",},},
+    {"id":{"name":"ddd_matrix_build_projection_perspective","path":"scripts/ddd_matrix_build_projection_perspective/ddd_matrix_build_projection_perspective.yy",},},
     {"id":{"name":"ddd_vec2","path":"scripts/ddd_vec2/ddd_vec2.yy",},},
   ],
   "resourceType":"GMProject",
