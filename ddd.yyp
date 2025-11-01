@@ -20,6 +20,7 @@
   "name":"ddd",
   "resources":[
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
+    {"id":{"name":"ddd_random_vector","path":"scripts/ddd_random_vector/ddd_random_vector.yy",},},
     {"id":{"name":"ddd_vec2","path":"scripts/ddd_vec2/ddd_vec2.yy",},},
   ],
   "resourceType":"GMProject",
