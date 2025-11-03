@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"ddd_quaternions",
+  "%Name":"ddd_quaternion",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"ddd_quaternions",
+  "name":"ddd_quaternion",
   "parent":{
     "name":"ddd",
     "path":"ddd.yyp",
