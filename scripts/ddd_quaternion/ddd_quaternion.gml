@@ -166,10 +166,10 @@ function ddd_quaternion_multiply(a, b, quaternion = array_create(4))
 function ddd_quaternion_scale(a, s, quaternion = array_create(4))
 {
 	// Set
-	quaternion[@ 0] *= s;
-	quaternion[@ 1] *= s;
-	quaternion[@ 2] *= s;
-	quaternion[@ 3] *= s;
+	quaternion[@ 0] = a[0] * s;
+	quaternion[@ 1] = a[1] * s;
+	quaternion[@ 2] = a[2] * s;
+	quaternion[@ 3] = a[3] * s;
 	
 	// Return
 	return quaternion;
