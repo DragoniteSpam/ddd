@@ -419,7 +419,7 @@ function ddd_quaternion_nlerp(a, b, amt, quaternion = array_create(4))
 	quaternion = ddd_quaternion_lerp(a, b, amt, quaternion);
 	
 	// Normalize
-	quaternion = ddd_quaternion_normalize_in_place(quaternion);
+	quaternion = ddd_quaternion_normalize(quaternion, quaternion);
 	
 	// Return
 	return quaternion;
