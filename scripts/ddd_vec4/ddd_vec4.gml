@@ -1,11 +1,5 @@
 // Feather disable all
 
-// I doubt many people would actually use these but it's tradition to include this stuff
-#macro DDD_X 0
-#macro DDD_Y 1
-#macro DDD_Z 2
-#macro DDD_W 3
-
 function ddd_vec4(x, y, z, w, out = array_create(4)) {
     out[@ 0] = x;
     out[@ 1] = y;

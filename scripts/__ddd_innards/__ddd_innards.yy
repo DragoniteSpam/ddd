@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__ddd_innards",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__ddd_innards",
+  "parent":{
+    "name":"ddd",
+    "path":"ddd.yyp",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

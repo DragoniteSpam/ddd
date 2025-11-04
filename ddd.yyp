@@ -23,6 +23,7 @@
   "name":"ddd",
   "resources":[
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
+    {"id":{"name":"__ddd_innards","path":"scripts/__ddd_innards/__ddd_innards.yy",},},
     {"id":{"name":"ddd_frustrum_corners","path":"scripts/ddd_frustrum_corners/ddd_frustrum_corners.yy",},},
     {"id":{"name":"ddd_frustrum_to_world_segment","path":"scripts/ddd_frustrum_to_world_segment/ddd_frustrum_to_world_segment.yy",},},
     {"id":{"name":"ddd_frustrum_to_world","path":"scripts/ddd_frustrum_to_world/ddd_frustrum_to_world.yy",},},
