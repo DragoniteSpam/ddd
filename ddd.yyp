@@ -37,6 +37,7 @@
     {"id":{"name":"ddd_screen_to_world","path":"scripts/ddd_screen_to_world/ddd_screen_to_world.yy",},},
     {"id":{"name":"ddd_vec2","path":"scripts/ddd_vec2/ddd_vec2.yy",},},
     {"id":{"name":"ddd_vec3","path":"scripts/ddd_vec3/ddd_vec3.yy",},},
+    {"id":{"name":"ddd_vec4","path":"scripts/ddd_vec4/ddd_vec4.yy",},},
     {"id":{"name":"ddd_world_to_frustrum","path":"scripts/ddd_world_to_frustrum/ddd_world_to_frustrum.yy",},},
     {"id":{"name":"ddd_world_to_screen","path":"scripts/ddd_world_to_screen/ddd_world_to_screen.yy",},},
   ],

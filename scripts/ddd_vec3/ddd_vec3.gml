@@ -235,7 +235,7 @@ function ddd_vec3_normalize(vec3, out = array_create(3)) {
 }
 
 function ddd_vec3_project(vec3, dir, out = array_create(3)) {
-    var f = dot_product(vec3[0], vec3[1], vec3[2], dir[0], dir[1], dir[2]) / dot_product(dir[0], dir[1], dir[2], dir[0], dir[1], dir[2]);
+    var f = dot_product_3d(vec3[0], vec3[1], vec3[2], dir[0], dir[1], dir[2]) / dot_product_3d(dir[0], dir[1], dir[2], dir[0], dir[1], dir[2]);
     out[@ 0] = dir[0] * f;
     out[@ 1] = dir[1] * f;
     out[@ 2] = dir[2] * f;
