@@ -15,11 +15,12 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.14.0.200",
+    "IDEVersion":"2024.14.0.207",
   },
   "name":"ddd",
   "resources":[
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
+    {"id":{"name":"ddd_quaternion","path":"scripts/ddd_quaternion/ddd_quaternion.yy",},},
     {"id":{"name":"ddd_vec2","path":"scripts/ddd_vec2/ddd_vec2.yy",},},
   ],
   "resourceType":"GMProject",
