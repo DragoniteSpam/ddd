@@ -6,8 +6,10 @@
 #macro DDD_Z 2
 #macro DDD_W 3
 
-function ddd_vec2(x, y) {
-    return [x, y];
+function ddd_vec2(x, y, out = array_create(2)) {
+    out[@ 0] = x;
+    out[@ 1] = y;
+    return out;
 }
 
 #region Boring stuff
@@ -15,20 +17,15 @@ function ddd_vec2_to_string(vec2) {
     return string("({0}, {1})", vec2[0], vec2[1]);
 }
 
-function ddd_vec2_set(vec2, x, y) {
-    vec2[0] = x;
-    vec2[1] = y;
-}
-
 function ddd_vec2_clone(vec2, out = array_create(2)) {
-    vec2[0];
-    vec2[1];
+    out[@ 0] = vec2[0];
+    out[@ 1] = vec2[1];
     return out;
 }
 
 function ddd_vec2_equals(a, b, out = array_create(2)) {
-    a[0] == b[0];
-    a[1] == b[1];
+    out[@ 0] = (a[0] == b[0]);
+    out[@ 1] = (a[1] == b[1]);
     return out;
 }
 #endregion
@@ -244,7 +241,7 @@ function ddd_vec2_slerp(vec2, target, amount, out = array_create(2)) {
     var theta = arccos(dot) * amount;
     var relative_sub = ddd_vec2_sub(target, vec2);
     var relative_product = ddd_vec2_mul(relative_sub, dot);
-    ddd_vec2_normalize_in_place(relative_product);
+    ddd_vec2_normalize(relative_product, relative_product);
     var relative_cos_product = ddd_vec2_mul(vec2, cos(theta));
     var relative_sin_product = ddd_vec2_mul(relative_product, sin(theta));
     return ddd_vec2_add(relative_cos_product, relative_sin_product, out);
