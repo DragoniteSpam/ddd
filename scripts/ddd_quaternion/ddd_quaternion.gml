@@ -189,112 +189,75 @@ function ddd_quaternion_magnitude(quaternion)
 }
 
 /// @func ddd_quaternion_normalize(quaternion)
-/// @desc Normalizes a quaternion and returns a new quaternion.
-/// @param {Array.Quaternion} quaternion The quaternion to normalize.
+/// @desc Normalizes a quaternion.
+/// @param {Array.Quaternion} quaternionIn The quaternion to normalize.
+/// @param {Array.Quaternion} quaternionOut The quaternion to write to (optional).
 /// @returns {Array.Quaternion}
-function ddd_quaternion_normalize(quaternion)
+function ddd_quaternion_normalize(quaternionIn, quaternionOut = array_create(4))
 {
 	// Get magnitude of quaternion
-	var m = ddd_quaternion_magnitude(quaternion);
-	
-	// Error check
-	if (m == 0) return ddd_quaternion_identity();
-	
-	// Return normalized quaternion
-	return [quaternion[0] / m, quaternion[1] / m, quaternion[2] / m, quaternion[3] / m];
-}
-
-/// @func ddd_quaternion_normalize_in_place(quaternion)
-/// @desc Normalizes a quaternion and overwrites the input quaternion.
-/// @param {Array.Quaternion} quaternion The quaternion to normalize.
-/// @returns {Array.Quaternion}
-function ddd_quaternion_normalize_in_place(quaternion)
-{
-	// Get magnitude of quaternion
-	var m = ddd_quaternion_magnitude(quaternion);
+	var m = ddd_quaternion_magnitude(quaternionIn);
 	
 	// Error check
 	if (m == 0)
 	{
-		quaternion[@ 0] = 0;
-		quaternion[@ 1] = 0;
-		quaternion[@ 2] = 0;
-		quaternion[@ 3] = 1;
+		quaternionOut[@ 0] = 0;
+		quaternionOut[@ 1] = 0;
+		quaternionOut[@ 2] = 0;
+		quaternionOut[@ 3] = 1;
 	}
 	
 	// Normalize quaternion
-	quaternion[@ 0] /= m;
-	quaternion[@ 1] /= m;
-	quaternion[@ 2] /= m;
-	quaternion[@ 3] /= m;
+	quaternionOut[@ 0] = quaternionIn[0] / m;
+	quaternionOut[@ 1] = quaternionIn[1] / m;
+	quaternionOut[@ 2] = quaternionIn[2] / m;
+	quaternionOut[@ 3] = quaternionIn[3] / m;
 	
 	// Return
-	return quaternion;
+	return quaternionOut;
 }
 
 /// @func ddd_quaternion_conjugate(quaternion)
-/// @desc Conjugates a quaternion and returns a new quaternion.
-/// @param {Array.Quaternion} quaternion The quaternion to conjugate.
+/// @desc Conjugates a quaternion.
+/// @param {Array.Quaternion} quaternionIn The quaternion to conjugate.
+/// @param {Array.Quaternion} quaternionOut The quaternion to write to (optional).
 /// @returns {Array.Quaternion}
-function ddd_quaternion_conjugate(quaternion)
+function ddd_quaternion_conjugate(quaternionIn, quaternionOut = array_create(4))
 {
-	return [-quaternion[0], -quaternion[1], -quaternion[2], quaternion[3]];
-}
-
-/// @func ddd_quaternion_conjugate_in_place(quaternion)
-/// @desc Conjugates a quaternion and overwrites the input quaternion.
-/// @param {Array.Quaternion} quaternion The quaternion to conjugate.
-/// @returns {Array.Quaternion}
-function ddd_quaternion_conjugate_in_place(quaternion)
-{
-	quaternion[@ 0] *= -1;
-	quaternion[@ 1] *= -1;
-	quaternion[@ 2] *= -1;
-	return quaternion;
+	quaternionOut[@ 0] = quaternionIn[0] * -1;
+	quaternionOut[@ 1] = quaternionIn[1] * -1;
+	quaternionOut[@ 2] = quaternionIn[2] * -1;
+	quaternionOut[@ 3] = quaternionIn[3];
+	return quaternionOut;
 }
 
 /// @func ddd_quaternion_inverse(quaternion)
-/// @desc Inverts a quaternion and returns a new quaternion.
-/// @param {Array.Quaternion} quaternion The quaternion to invert.
-/// @returns {Array.Quaternion}
-function ddd_quaternion_inverse(quaternion)
-{
-	// Get magnitude^2
-	var m2 = quaternion[0] * quaternion[0] + quaternion[1] * quaternion[1] + quaternion[2] * quaternion[2] + quaternion[3] * quaternion[3];
-	
-	// Identity
-	if (m2 == 0) return ddd_quaternion_identity();
-	
-	// Return inverse
-	return [-quaternion[0] / m2, -quaternion[1] / m2, -quaternion[2] / m2, quaternion[3] / m2];
-}
-
-/// @func ddd_quaternion_inverse_in_place(quaternion)
 /// @desc Inverts a quaternion and overwrites the input quaternion.
-/// @param {Array.Quaternion} quaternion The quaternion to invert.
+/// @param {Array.Quaternion} quaternionIn The quaternion to invert.
+/// @param {Array.Quaternion} quaternionOut The quaternion to write to (optional).
 /// @returns {Array.Quaternion}
-function ddd_quaternion_inverse_in_place(quaternion)
+function ddd_quaternion_inverse(quaternionIn, quaternionOut = array_length(4))
 {
 	// Get magnitude^2
-	var m2 = quaternion[0] * quaternion[0] + quaternion[1] * quaternion[1] + quaternion[2] * quaternion[2] + quaternion[3] * quaternion[3];
+	var m2 = quaternionIn[0] * quaternionIn[0] + quaternionIn[1] * quaternionIn[1] + quaternionIn[2] * quaternionIn[2] + quaternionIn[3] * quaternionIn[3];
 	
 	// Identity
 	if (m2 == 0)
 	{
-		quaternion[@ 0] = 0;
-		quaternion[@ 1] = 0;
-		quaternion[@ 2] = 0;
-		quaternion[@ 3] = 1;
+		quaternionOut[@ 0] = 0;
+		quaternionOut[@ 1] = 0;
+		quaternionOut[@ 2] = 0;
+		quaternionOut[@ 3] = 1;
 	}
 	
 	// Inverse
-	quaternion[@ 0] = -quaternion[@ 0] / m2;
-	quaternion[@ 1] = -quaternion[@ 1] / m2;
-	quaternion[@ 2] = -quaternion[@ 2] / m2;
-	quaternion[@ 3] =  quaternion[@ 3] / m2;
+	quaternionOut[@ 0] = -quaternionIn[0] / m2;
+	quaternionOut[@ 1] = -quaternionIn[1] / m2;
+	quaternionOut[@ 2] = -quaternionIn[2] / m2;
+	quaternionOut[@ 3] =  quaternionIn[3] / m2;
 	
 	// Return inverse
-	return quaternion;
+	return quaternionOut;
 }
 
 /// @func ddd_quaternion_dot(a, b)
