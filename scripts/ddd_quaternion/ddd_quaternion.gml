@@ -267,7 +267,7 @@ function ddd_quaternion_inverse(quaternionIn, quaternionOut = array_length(4))
 /// @returns {Real}
 function ddd_quaternion_dot(a, b)
 {
-	return a[0] * b[0] + a[1] * b[1] + a[2] * b[2] + a[3] * b[3];
+	return dot_product_3d(a[0], a[1], a[2], b[0], b[1], b[2]) + a[3] * b[3];
 }
 
 /// @func ddd_quaternion_rotate_vec3(quaternion, vec3)
