@@ -90,7 +90,8 @@ function ddd_vec2_sub_vec2(a, b, out = array_create(2)) {
 }
 
 function ddd_vec2_sub_scalar(vec2, scalar, out = array_create(2)) {
-    return [vec2[0] - scalar, vec2[1] - scalar];
+    out[@ 0] = vec2[0] - scalar;
+    out[@ 1] = vec2[1] - scalar;
     return out;
 }
 
