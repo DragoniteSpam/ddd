@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"ddd_vec3",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"ddd_vec3",
+  "parent":{
+    "name":"ddd",
+    "path":"ddd.yyp",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
