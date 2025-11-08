@@ -499,4 +499,60 @@ function ddd_quat_to_euler(quaternion, vec3 = array_create(3))
 	return vec3;
 }
 
+/// @func ddd_quat_from_rotation_matrix(matrix, [quaternion])
+/// @desc Build a quaternion from a rotation matrix, assumes no scaling.
+/// @param {Array.Matrix} matrix The rotation matrix to use.
+/// @param {Array.Quaternion} [quaternion] Quaternion to write (optional).
+/// @returns {Array.Quaternion}
+function ddd_quat_from_rotation_matrix(matrix, quaternion = array_create(4))
+{
+    /// https://github.com/mrdoob/three.js/blob/dev/src/math/Quaternion.js
+    /// Thanks three.js
+    var m11 = matrix[ 0 ], m12 = matrix[ 1 ], m13 = matrix[ 2 ];
+    var m21 = matrix[ 4 ], m22 = matrix[ 5 ], m23 = matrix[ 6 ];
+    var m31 = matrix[ 8 ], m32 = matrix[ 9 ], m33 = matrix[ 10 ];
+
+    var trace = m11 + m22 + m33;
+
+    if (trace > 0)
+    {
+        var s = 0.5 / sqrt(trace + 1.0);
+        
+        quaternion[@ 3] = 0.25 / s;
+        quaternion[@ 0] = (m32 - m23) * s;
+        quaternion[@ 1] = (m13 - m31) * s;
+        quaternion[@ 2] = (m21 - m12) * s;
+    }
+    else if (m11 > m22 && m11 > m33)
+    {
+
+        var s = 2.0 * sqrt(1.0 + m11 - m22 - m33);
+
+        quaternion[@ 3] = (m32 - m23) / s;
+        quaternion[@ 0] = 0.25 * s;
+        quaternion[@ 1] = (m12 + m21) / s;
+        quaternion[@ 2] = (m13 + m31) / s;
+    }
+    else if (m22 > m33)
+    {
+        var s = 2.0 * sqrt(1.0 + m22 - m11 - m33);
+        
+        quaternion[@ 3] = (m13 - m31) / s;
+        quaternion[@ 0] = (m12 + m21) / s;
+        quaternion[@ 1] = 0.25 * s;
+        quaternion[@ 2] = (m23 + m32) / s;
+    }
+    else
+    {
+        var s = 2.0 * sqrt( 1.0 + m33 - m11 - m22 );
+        
+        quaternion[@ 3] = (m21 - m12) / s;
+        quaternion[@ 0] = (m13 + m31) / s;
+        quaternion[@ 1] = (m23 + m32) / s;
+        quaternion[@ 2] = 0.25 * s;
+    }
+
+    return quaternion;
+}
+
 #endregion
