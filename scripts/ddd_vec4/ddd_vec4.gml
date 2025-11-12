@@ -254,7 +254,7 @@ function ddd_vec4_normalize(vec4, out = array_create(4)) {
 }
 
 function ddd_vec4_project(vec4, dir, out = array_create(4)) {
-    var f = (dot_product(vec4[0], vec4[1], vec4[2], dir[0], dir[1], dir[2]) + vec4[3] * dir[3]) / (dot_product(dir[0], dir[1], dir[2], dir[0], dir[1], dir[2]) + sqr(dir[3]));
+    var f = (dot_product_3d(vec4[0], vec4[1], vec4[2], dir[0], dir[1], dir[2]) + vec4[3] * dir[3]) / (dot_product_3d(dir[0], dir[1], dir[2], dir[0], dir[1], dir[2]) + sqr(dir[3]));
     out[@ 0] = dir[0] * f;
     out[@ 1] = dir[1] * f;
     out[@ 2] = dir[2] * f;
@@ -273,7 +273,7 @@ function ddd_vec4_lerp(vec4, target, amount, out = array_create(4)) {
 function ddd_vec4_angle(vec4, value) {
     return darccos(
         (dot_product_3d(vec4[0], vec4[1], vec4[2], value[0], value[1], value[2]) + vec4[3] * value[3]) /
-        (sqrt(sqr(vec4[0]) + sqr(vec4[1]) + sqr(vec4[2]) + sqr(vec4[3]))) * sqrt(sqr(value[0]) + sqr(value[1]) + sqr(value[2]) + sqr(value[3])))
+        (sqrt(sqr(vec4[0]) + sqr(vec4[1]) + sqr(vec4[2]) + sqr(vec4[3])) * sqrt(sqr(value[0]) + sqr(value[1]) + sqr(value[2]) + sqr(value[3])))
     );
 }
 
