@@ -570,9 +570,9 @@ function ddd_vec3_rotate(vec3, axis, angle, out = array_create(3)) {
     var a2 = axis[2];
     
     var dot = dot_product_3d(v0, v1, v2, a0, a1, a2) * (1 - cosine);
-    out[0] = (v0 * cosine) + (a1 * v2 - v1 * a2) * sine + (a0 * dot);
-    out[1] = (v1 * cosine) + (a2 * v0 - v2 * a0) * sine + (a1 * dot);
-    out[2] = (v2 * cosine) + (a0 * v1 - v0 * a1) * sine + (a2 * dot);
+    out[@ 0] = (v0 * cosine) + (a1 * v2 - v1 * a2) * sine + (a0 * dot);
+    out[@ 1] = (v1 * cosine) + (a2 * v0 - v2 * a0) * sine + (a1 * dot);
+    out[@ 2] = (v2 * cosine) + (a0 * v1 - v0 * a1) * sine + (a2 * dot);
     
     return out;
 }
