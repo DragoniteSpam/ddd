@@ -463,18 +463,25 @@ function ddd_vec3_project(a, b, out = array_create(3)) {
 }
 
 /**
- * Linearly interpolates one vector to another, moving between the two by a specified percentage:
+ * Linearly interpolates one vector to another, moving between the two by a specified percentage.
+ * `amount` may be a vector or a scalar:
  * https://en.wikipedia.org/wiki/Linear_interpolation
  * @param {array<real>} a The first vec3
  * @param {array<real>} b The second vec3
- * @param {array<real>} amount The normalized percentage to interpolate from a to b; values outside the range of [0, 1] will extrapolate instead
+ * @param {any} amount The normalized percentage to interpolate from a to b; values outside the range of [0, 1] will extrapolate instead
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
  * @returns {array<real>} Returns a new array, or the `out` array with containing the result
  */
 function ddd_vec3_lerp(a, b, amount, out = array_create(3)) {
-    out[@ 0] = lerp(a[0], b[0], amount[0]);
-    out[@ 1] = lerp(a[1], b[1], amount[1]);
-    out[@ 2] = lerp(a[2], b[2], amount[2]);
+    if (is_array(amount)) {
+        out[@ 0] = lerp(a[0], b[0], amount[0]);
+        out[@ 1] = lerp(a[1], b[1], amount[1]);
+        out[@ 2] = lerp(a[2], b[2], amount[2]);
+    } else {
+        out[@ 0] = lerp(a[0], b[0], amount);
+        out[@ 1] = lerp(a[1], b[1], amount);
+        out[@ 2] = lerp(a[2], b[2], amount);
+    }
     return out;
 }
 

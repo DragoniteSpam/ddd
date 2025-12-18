@@ -263,10 +263,17 @@ function ddd_vec4_project(vec4, dir, out = array_create(4)) {
 }
 
 function ddd_vec4_lerp(vec4, target, amount, out = array_create(4)) {
-    out[@ 0] = lerp(vec4[0], target[0], amount[0]);
-    out[@ 1] = lerp(vec4[1], target[1], amount[1]);
-    out[@ 2] = lerp(vec4[2], target[2], amount[2]);
-    out[@ 3] = lerp(vec4[3], target[3], amount[3]);
+    if (is_array(amount)) {
+        out[@ 0] = lerp(vec4[0], target[0], amount[0]);
+        out[@ 1] = lerp(vec4[1], target[1], amount[1]);
+        out[@ 2] = lerp(vec4[2], target[2], amount[2]);
+        out[@ 3] = lerp(vec4[3], target[3], amount[3]);
+    } else {
+        out[@ 0] = lerp(vec4[0], target[0], amount);
+        out[@ 1] = lerp(vec4[1], target[1], amount);
+        out[@ 2] = lerp(vec4[2], target[2], amount);
+        out[@ 3] = lerp(vec4[3], target[3], amount);
+    }
     return out;
 }
 

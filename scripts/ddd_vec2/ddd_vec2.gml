@@ -211,8 +211,13 @@ function ddd_vec2_project(vec2, dir, out = array_create(2)) {
 }
 
 function ddd_vec2_lerp(vec2, target, amount, out = array_create(2)) {
-    out[@ 0] = lerp(vec2[0], target[0], amount[0]);
-    out[@ 1] = lerp(vec2[1], target[1], amount[1]);
+    if (is_array(amount)) {
+        out[@ 0] = lerp(vec2[0], target[0], amount[0]);
+        out[@ 1] = lerp(vec2[1], target[1], amount[1]);
+    } else {
+        out[@ 0] = lerp(vec2[0], target[0], amount);
+        out[@ 1] = lerp(vec2[1], target[1], amount);
+    }
     return out;
 }
 
