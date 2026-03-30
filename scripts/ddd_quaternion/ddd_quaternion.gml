@@ -113,10 +113,15 @@ function ddd_quat_set(quaternion, x, y, z, w)
 /// @func ddd_quat_clone(quaternion)
 /// @desc Clone a quaternion.
 /// @param {Array.Quaternion} quaternion Quaternion to clone.
+/// @param {Array.Quaternion} [output] Quaternion to set the results to (optional).
 /// @returns {Array.Quaternion}
-function ddd_quat_clone(quaternion)
+function ddd_quat_clone(quaternion, quaternionOut = array_create(4))
 {
-    return [quaternion[0], quaternion[1], quaternion[2], quaternion[3]];
+    quaternionOut[@ 0] = quaternion[0];
+    quaternionOut[@ 1] = quaternion[1];
+    quaternionOut[@ 2] = quaternion[2];
+    quaternionOut[@ 3] = quaternion[3];
+    return quaternionOut;
 }
 
 /// @func ddd_quat_equals(a, b)
