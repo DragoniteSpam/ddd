@@ -178,6 +178,7 @@
     {"id":{"name":"ddd_vec4","path":"scripts/ddd_vec4/ddd_vec4.yy",},},
     {"id":{"name":"ddd_world_to_frustrum","path":"scripts/ddd_world_to_frustrum/ddd_world_to_frustrum.yy",},},
     {"id":{"name":"ddd_world_to_screen","path":"scripts/ddd_world_to_screen/ddd_world_to_screen.yy",},},
+    {"id":{"name":"shd_demo_3d","path":"shaders/shd_demo_3d/shd_demo_3d.yy",},},
     {"id":{"name":"spr_demo_floor","path":"sprites/spr_demo_floor/spr_demo_floor.yy",},},
     {"id":{"name":"spr_demo_noise","path":"sprites/spr_demo_noise/spr_demo_noise.yy",},},
     {"id":{"name":"spr_demo_tex_dragon","path":"sprites/spr_demo_tex_dragon/spr_demo_tex_dragon.yy",},},
