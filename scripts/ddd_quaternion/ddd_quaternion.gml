@@ -2,7 +2,7 @@
 
 /*
 	Quaternions are a way of representing a rotation in 3D space without the woes of Euler. Quaternions have 4 components; X, Y, Z and W, all clamped between -1 and 1.
-	Whilst quaternions are not as intuitive as Euler, they do have two extra advantages. Quaternions do not gimble lock, that it to say you can rotate in any which way without
+	Whilst quaternions are not as intuitive as Euler, they do have two extra advantages. Quaternions do not gimbal lock, that it to say you can rotate in any which way without
 	one of the rotation axis getting locked. Quaternions can also interpolate much more smoothly, which is great for animations.
 */
 
