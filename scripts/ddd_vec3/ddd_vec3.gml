@@ -40,17 +40,13 @@ function ddd_vec3_clone(vec3, out = array_create(3)) {
 }
 
 /**
- * I'm pretty sure this is wrong
+ * Compares two vector2s component-wise, returns whether or not they are equal
  * @param {array<real>} a The first vec3
  * @param {array<real>} b The second vec3
- * @param {array<bool>} [out]=array_create(3) Description
- * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ * @returns {array<real>} True if the two vectors are equal, false otherwise
  */
-function ddd_vec3_equals(a, b, out = array_create(3)) {
-    out[@ 0] = (a[0] == b[0]);
-    out[@ 1] = (a[1] == b[1]);
-    out[@ 2] = (a[2] == b[2]);
-    return out;
+function ddd_vec3_equals(a, b) {
+    return (a[0] == b[0]) && (a[1] == b[1]) && (a[2] == b[2]);
 }
 #endregion
 
@@ -276,7 +272,6 @@ function ddd_vec3_div_scalar(vec3, scalar, out = array_create(3)) {
 
 #region Bounds
 /**
- * 
  * Returns a vector3 with each component clamped between the same component on the upper and lower bound vectors.
  * @param {array<real>} vec3 Description
  * @param {array<real>} a The lower bound vec3

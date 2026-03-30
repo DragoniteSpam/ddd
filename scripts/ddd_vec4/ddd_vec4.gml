@@ -21,12 +21,8 @@ function ddd_vec4_clone(vec4, out = array_create(4)) {
     return out;
 }
 
-function ddd_vec4_equals(a, b, out = array_create(4)) {
-    out[@ 0] = (a[0] == b[0]);
-    out[@ 1] = (a[1] == b[1]);
-    out[@ 2] = (a[2] == b[2]);
-    out[@ 3] = (a[3] == b[3]);
-    return out;
+function ddd_vec4_equals(a, b) {
+    return (a[0] == b[0]) && (a[1] == b[1]) && (a[2] == b[2]) && (a[3] == b[3]);
 }
 #endregion
 

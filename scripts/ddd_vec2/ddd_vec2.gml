@@ -17,10 +17,9 @@ function ddd_vec2_clone(vec2, out = array_create(2)) {
     return out;
 }
 
-function ddd_vec2_equals(a, b, out = array_create(2)) {
-    out[@ 0] = (a[0] == b[0]);
-    out[@ 1] = (a[1] == b[1]);
     return out;
+function ddd_vec2_equals(a, b) {
+    return (a[0] == b[0]) && (a[1] == b[1]);
 }
 #endregion
 
