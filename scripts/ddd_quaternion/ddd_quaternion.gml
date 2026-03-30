@@ -582,4 +582,36 @@ function ddd_quat_from_rotation_matrix(matrix, quaternion = array_create(4))
     return quaternion;
 }
 
+/// @func ddd_quat_to_rotation_matrix(quaternion, [matrix])
+/// @desc Build a rotation matrix from a quaternion;
+/// @param {Array.Quaternion} quaternion The quaternion to use.
+/// @param {Array.Matrix} [matrix] Matrix to write (optional).
+/// @returns {Array.Matrix}
+/// @pure
+function ddd_quat_to_rotation_matrix(quaternion, matrix = array_create(16))
+{
+    var _x = quaternion[0];
+    var _y = quaternion[1];
+    var _z = quaternion[2];
+    var _w = quaternion[3];
+    
+    matrix[@ 0] = 2*(_w*_w + _x*_x) - 1;
+    matrix[@ 1] = 2*(_x*_y - _w*_z);
+    matrix[@ 2] = 2*(_x*_z + _w*_y);
+    matrix[@ 3] = 0;
+    matrix[@ 4] = 2*(_x*_y + _w*_z);
+    matrix[@ 5] = 2*(_w*_w + _y*_y) - 1;
+    matrix[@ 6] = 2*(_y*_z - _w*_x);
+    matrix[@ 7] = 0;
+    matrix[@ 8] = 2*(_x*_z - _w*_y);
+    matrix[@ 9] = 2*(_y*_z + _w*_x);
+    matrix[@ 10] = 2*(_w*_w + _z*_z) - 1;
+    matrix[@ 11] = 0;
+    matrix[@ 12] = 0;
+    matrix[@ 13] = 0;
+    matrix[@ 14] = 0;
+    matrix[@ 15] = 1;
+    
+    return matrix;
+}
 #endregion
