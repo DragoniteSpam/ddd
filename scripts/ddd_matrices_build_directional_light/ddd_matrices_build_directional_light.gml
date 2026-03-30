@@ -19,6 +19,7 @@
 /// @param cameraProjMatrix
 /// @param [zNearOffset=0]
 /// @param [resultStruct]
+/// @pure
 
 function ddd_matrices_build_directional_light(dx, dy, dz, cam_view_matrix, cam_proj_matrix, near_offset = 0, result_struct = undefined)
 {

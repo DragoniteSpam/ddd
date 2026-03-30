@@ -7,6 +7,8 @@
 /// @param {Array.Vec3} scale The scale of the transformation.
 /// @param {Array.Matrix} [matrix] The matrix to build into (optional).
 /// @returns {Array.Matrix}
+/// @pure
+
 function ddd_matrix_build_from_quat(position, quaternion, scale, matrix = array_create(16))
 {
 	var qx = quaternion[0], qy = quaternion[1], qz = quaternion[2], qw = quaternion[3];

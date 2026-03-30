@@ -15,6 +15,7 @@
 /// @param znear
 /// @param zfar
 /// @param [resultMatrix]
+/// @pure
 
 function ddd_matrix_build_projection_perspective(width, height, znear, zfar, result_matrix = array_create(16))
 {

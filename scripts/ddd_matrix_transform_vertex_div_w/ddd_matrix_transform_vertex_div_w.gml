@@ -9,6 +9,7 @@
 /// @param z
 /// @param w
 /// @param [result_array]
+/// @pure
 
 function ddd_matrix_transform_vertex_div_w(matrix, x, y, z, w, result_array = [])
 {

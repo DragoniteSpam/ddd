@@ -5,6 +5,7 @@
 /// 
 /// @param view_matrix
 /// @param proj_matrix
+/// @pure
 
 function ddd_frustrum_corners(view_matrix, proj_matrix)
 {

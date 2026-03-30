@@ -8,6 +8,7 @@
  * @param {real} z
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
  * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ * @pure
  */
 function ddd_vec2(x, y, out = array_create(2)) {
     out[@ 0] = x;
@@ -20,6 +21,7 @@ function ddd_vec2(x, y, out = array_create(2)) {
  * Returns a string representing the vector2, in the nice (x, y, z) that makes math people happy
  * @param {array<real>} vec2 The vector to stringify
  * @returns {string}
+ * @pure
  */
 function ddd_vec2_to_string(vec2) {
     return string("({0}, {1})", vec2[0], vec2[1]);
@@ -30,6 +32,7 @@ function ddd_vec2_to_string(vec2) {
  * @param {array<real>} vec2 The vector2 to clone
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
  * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ * @pure
  */
 function ddd_vec2_clone(vec2, out = array_create(2)) {
     out[@ 0] = vec2[0];
@@ -42,6 +45,7 @@ function ddd_vec2_clone(vec2, out = array_create(2)) {
  * @param {array<real>} a The first vec2
  * @param {array<real>} b The second vec2
  * @returns {array<real>} True if the two vectors are equal, false otherwise
+ * @pure
  */
 function ddd_vec2_equals(a, b) {
     return (a[0] == b[0]) && (a[1] == b[1]);
@@ -53,6 +57,7 @@ function ddd_vec2_equals(a, b) {
  * Returns a vector2 with each component set to zero.
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
  * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ * @pure
  */
 function ddd_vec2_zero(out = array_create(2)) {
     out[@ 0] = 0;
@@ -64,6 +69,7 @@ function ddd_vec2_zero(out = array_create(2)) {
  * Returns a vector2 with each component set to +1.
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
  * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ * @pure
  */
 function ddd_vec2_one(out = array_create(2)) {
     out[@ 0] = 1;
@@ -75,6 +81,7 @@ function ddd_vec2_one(out = array_create(2)) {
  * Returns a vector2 with each component set to infinity.
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
  * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ * @pure
  */
 function ddd_vec2_infinity(out = array_create(2)) {
     out[@ 0] = infinity;
@@ -86,6 +93,7 @@ function ddd_vec2_infinity(out = array_create(2)) {
  * Function Description
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
  * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ * @pure
  */
 function ddd_vec2_minus_infinity(out = array_create(2)) {
     out[@ 0] = -infinity;
@@ -101,6 +109,7 @@ function ddd_vec2_minus_infinity(out = array_create(2)) {
  * @param {array<real>} vec2 The vector
  * @param {any} operand The operand, either a vector or a scalar
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
+ * @pure
  */
 function ddd_vec2_add(vec2, operand, out = array_create(2)) {
     if (is_numeric(operand)) {
@@ -115,6 +124,7 @@ function ddd_vec2_add(vec2, operand, out = array_create(2)) {
  * @param {array<real>} b The second vec2
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
  * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ * @pure
  */
 function ddd_vec2_add_vec2(a, b, out = array_create(2)) {
     out[@ 0] = a[0] + b[0];
@@ -128,6 +138,7 @@ function ddd_vec2_add_vec2(a, b, out = array_create(2)) {
  * @param {any*} scalar The scalar
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
  * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ * @pure
  */
 function ddd_vec2_add_scalar(vec2, scalar, out = array_create(2)) {
     out[@ 0] = vec2[0] + scalar;
@@ -141,6 +152,7 @@ function ddd_vec2_add_scalar(vec2, scalar, out = array_create(2)) {
  * @param {array<real>} vec2 The vector
  * @param {any} operand The operand, either a vector or a scalar
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
+ * @pure
  */
 function ddd_vec2_sub(vec2, operand, out = array_create(2)) {
     if (is_numeric(operand)) {
@@ -155,6 +167,7 @@ function ddd_vec2_sub(vec2, operand, out = array_create(2)) {
  * @param {array<real>} b The second vec2
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
  * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ * @pure
  */
 function ddd_vec2_sub_vec2(a, b, out = array_create(2)) {
     out[@ 0] = a[0] - b[0];
@@ -168,6 +181,7 @@ function ddd_vec2_sub_vec2(a, b, out = array_create(2)) {
  * @param {any*} scalar The scalar
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
  * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ * @pure
  */
 function ddd_vec2_sub_scalar(vec2, scalar, out = array_create(2)) {
     out[@ 0] = vec2[0] - scalar;
@@ -181,6 +195,7 @@ function ddd_vec2_sub_scalar(vec2, scalar, out = array_create(2)) {
  * @param {array<real>} vec2 The vector
  * @param {any} operand The operand, either a vector or a scalar
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
+ * @pure
  */
 function ddd_vec2_mul(vec2, operand, out = array_create(2)) {
     if (is_numeric(operand)) {
@@ -195,6 +210,7 @@ function ddd_vec2_mul(vec2, operand, out = array_create(2)) {
  * @param {array<real>} b The second vec2
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
  * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ * @pure
  */
 function ddd_vec2_mul_vec2(a, b, out = array_create(2)) {
     out[@ 0] = a[0] * b[0];
@@ -208,6 +224,7 @@ function ddd_vec2_mul_vec2(a, b, out = array_create(2)) {
  * @param {any*} scalar The scalar
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
  * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ * @pure
  */
 function ddd_vec2_mul_scalar(vec2, scalar, out = array_create(2)) {
     out[@ 0] = vec2[0] * scalar;
@@ -221,6 +238,7 @@ function ddd_vec2_mul_scalar(vec2, scalar, out = array_create(2)) {
  * @param {array<real>} vec2 The vector
  * @param {any} operand The operand, either a vector or a scalar
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
+ * @pure
  */
 function ddd_vec2_div(vec2, operand, out = array_create(2)) {
     if (is_numeric(operand)) {
@@ -235,6 +253,7 @@ function ddd_vec2_div(vec2, operand, out = array_create(2)) {
  * @param {array<real>} b The second vec2
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
  * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ * @pure
  */
 function ddd_vec2_div_vec2(a, b, out = array_create(2)) {
     out[@ 0] = a[0] / b[0];
@@ -248,6 +267,7 @@ function ddd_vec2_div_vec2(a, b, out = array_create(2)) {
  * @param {any*} scalar The scalar
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
  * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ * @pure
  */
 function ddd_vec2_div_scalar(vec2, scalar, out = array_create(2)) {
     out[@ 0] = vec2[0] / scalar;
@@ -265,6 +285,7 @@ function ddd_vec2_div_scalar(vec2, scalar, out = array_create(2)) {
  * @param {array<real>} b The upper bound vec2
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
  * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ * @pure
  */
 function ddd_vec2_clamp(vec2, a, b, out = array_create(2)) {
     out[@ 0] = clamp(vec2[0], a[0], b[0]);
@@ -280,6 +301,7 @@ function ddd_vec2_clamp(vec2, a, b, out = array_create(2)) {
  * @param {real} mag The magnitude to set the vector to
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
  * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ * @pure
  */
 function ddd_vec2_clamp_magnitude(vec2, mag, out = array_create(2)) {
     var d = point_distance(0, 0, vec2[0], vec2[1]) / mag;
@@ -294,6 +316,7 @@ function ddd_vec2_clamp_magnitude(vec2, mag, out = array_create(2)) {
  * @param {array<real>} b The second vec2 to compare
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
  * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ * @pure
  */
 function ddd_vec2_min(vec2, value, out = array_create(2)) {
     out[@ 0] = min(vec2[0], value[0]);
@@ -307,6 +330,7 @@ function ddd_vec2_min(vec2, value, out = array_create(2)) {
  * @param {array<real>} b The second vec2 to compare
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
  * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ * @pure
  */
 function ddd_vec2_max(vec2, value, out = array_create(2)) {
     out[@ 0] = max(vec2[0], value[0]);
@@ -321,6 +345,7 @@ function ddd_vec2_max(vec2, value, out = array_create(2)) {
  * @param {array<real>} vec2 The vector
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
  * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ * @pure
  */
 function ddd_vec2_abs(vec2, mag, out = array_create(2)) {
     out[@ 0] = abs(vec2[0]);
@@ -333,6 +358,7 @@ function ddd_vec2_abs(vec2, mag, out = array_create(2)) {
  * @param {array<real>} vec2 The vector
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
  * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ * @pure
  */
 function ddd_vec2_frac(vec2, out = array_create(2)) {
     out[@ 0] = frac(vec2[0]);
@@ -346,6 +372,7 @@ function ddd_vec2_frac(vec2, out = array_create(2)) {
  * @param {array<real>} vec2 The vector
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
  * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ * @pure
  */
 function ddd_vec2_floor(vec2, out = array_create(2)) {
     out[@ 0] = floor(vec2[0]);
@@ -359,6 +386,7 @@ function ddd_vec2_floor(vec2, out = array_create(2)) {
  * @param {array<real>} vec2 The vector
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
  * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ * @pure
  */
 function ddd_vec2_ceil(vec2, out = array_create(2)) {
     out[@ 0] = ceil(vec2[0]);
@@ -373,6 +401,7 @@ function ddd_vec2_ceil(vec2, out = array_create(2)) {
  * @param {array<real>} vec2 The vector
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
  * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ * @pure
  */
 function ddd_vec2_round(vec2, out = array_create(2)) {
     out[@ 0] = round(vec2[0]);
@@ -386,6 +415,7 @@ function ddd_vec2_round(vec2, out = array_create(2)) {
  * Calculates the magnitude of a vector, or how far from the origin it is.
  * @param {array<real>} vec2 The vector
  * @returns {real}
+ * @pure
  */
 function ddd_vec2_mag(vec2) {
     return point_distance(0, 0, vec2[0], vec2[1]);
@@ -397,6 +427,7 @@ function ddd_vec2_mag(vec2) {
  * @param {array<real>} a The first vec2
  * @param {array<real>} b The second vec2
  * @returns {real}
+ * @pure
  */
 function ddd_vec2_dot(a, b) {
     return dot_product(a[0], a[1], b[0], b[1]);
@@ -410,6 +441,7 @@ function ddd_vec2_dot(a, b) {
  * @param {array<real>} vec2 The vec2 to normaliz(s)e
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
  * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ * @pure
  */
 function ddd_vec2_normalize(vec2, out = array_create(2)) {
     var mag = point_distance(0, 0, vec2[0], vec2[1]);
@@ -425,6 +457,7 @@ function ddd_vec2_normalize(vec2, out = array_create(2)) {
  * @param {array<real>} b The vec2 to be projected onto
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
  * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ * @pure
  */
 function ddd_vec2_project(vec2, dir, out = array_create(2)) {
     var f = dot_product(vec2[0], vec2[1], dir[0], dir[1]) / dot_product(dir[0], dir[1], dir[0], dir[1]);
@@ -442,6 +475,7 @@ function ddd_vec2_project(vec2, dir, out = array_create(2)) {
  * @param {any} amount The normalized percentage to interpolate from a to b; values outside the range of [0, 1] will extrapolate instead
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
  * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ * @pure
  */
 function ddd_vec2_lerp(vec2, target, amount, out = array_create(2)) {
     if (is_array(amount)) {
@@ -459,6 +493,7 @@ function ddd_vec2_lerp(vec2, target, amount, out = array_create(2)) {
  * @param {array<real>} a The first vec2
  * @param {array<real>} b The second vec2
  * @returns {real}
+ * @pure
  */
 function ddd_vec2_angle(a, b) {
     return darccos(dot_product(a[0], a[1], b[0], b[1]) / (point_distance(0, 0, a[0], a[1]) * point_distance(0, 0, b[0], b[1])));
@@ -471,6 +506,7 @@ function ddd_vec2_angle(a, b) {
  * @param {real} amount The distance to move `a` towards `b`
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
  * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ * @pure
  */
 function ddd_vec2_approach(a, b, amount, out = array_create(2)) {
     var total_dist = point_distance(b[0], b[1], a[0], a[1]);
@@ -491,6 +527,7 @@ function ddd_vec2_approach(a, b, amount, out = array_create(2)) {
  * @param {real} amount The normalized percentage to slerp from a to b; values outside the range of [0, 1] will extrapolate instead
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
  * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ * @pure
  */
 function ddd_vec2_slerp(a, b, amount, out = array_create(2)) {
     var dot = dot_product_normalized(a[0], a[1], b[0], b[1]);

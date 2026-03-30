@@ -15,6 +15,7 @@
 /// @param yup
 /// @param zup
 /// @param [resultMatrix]
+/// @pure
 
 function ddd_matrix_build_lookat(xfrom, yfrom, zfrom, xto, yto, zto, xup, yup, zup, result_matrix = array_create(16))
 {

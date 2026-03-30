@@ -21,6 +21,7 @@
 /// @param projMatrix
 /// @param screenWidth
 /// @param screenHeight
+/// @pure
 
 function ddd_world_to_screen(x, y, z, world_matrix = undefined, view_matrix, proj_matrix, screen_width, screen_height)
 {

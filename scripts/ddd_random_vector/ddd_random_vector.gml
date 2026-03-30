@@ -5,6 +5,7 @@
 /// native random functions so its use may alter the outcome of procedural generation etc.
 /// 
 /// @param [result_array]
+/// @pure
 
 function ddd_random_vector(result_array = [])
 {

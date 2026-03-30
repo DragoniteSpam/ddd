@@ -11,6 +11,7 @@
 /// @param znear
 /// @param zfar
 /// @param [resultMatrix]
+/// @pure
 
 function ddd_matrix_build_projection_perspective_fov(fov_y, aspect, znear, zfar, result_matrix = array_create(16))
 {

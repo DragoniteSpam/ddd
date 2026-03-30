@@ -14,6 +14,7 @@
 /// @param y
 /// @param viewMatrix
 /// @param projMatrix
+/// @pure
 
 function ddd_frustrum_to_world_segment(x, y, view_matrix, proj_matrix)
 {

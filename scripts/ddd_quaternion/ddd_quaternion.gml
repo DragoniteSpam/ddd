@@ -12,6 +12,7 @@
 /// @desc Build an identity quaternion and return it back.
 /// @param {Array.Quaternion} [quaternion] Quaternion to identity-ify (optional).
 /// @returns {Array.Quaternion}
+/// @pure
 function ddd_quat_identity(quaternion = array_create(4))
 {
 	// An identity quaternion is always (0, 0, 0, 1), which represents no rotation
@@ -31,6 +32,7 @@ function ddd_quat_identity(quaternion = array_create(4))
 /// @param {Real} angle Rotation angle in degrees.
 /// @param {Array.Quaternion} [quaternion] Quaternion to build to (optional).
 /// @returns {Array.Quaternion}
+/// @pure
 function ddd_quat_from_axis_angle(axisX, axisY, axisZ, angle, quaternion = array_create(4))
 {
 	/// https://github.com/JujuAdams/basic-quaternions/blob/master/scripts/QuatFromAxisAngle/QuatFromAxisAngle.gml
@@ -60,6 +62,7 @@ function ddd_quat_from_axis_angle(axisX, axisY, axisZ, angle, quaternion = array
 /// @param {Real} angleZ z-angle in degrees.
 /// @param {Array.Quaternion} [quaternion] Quaternion to build to (optional).
 /// @returns {Array.Quaternion}
+/// @pure
 function ddd_quat_from_euler(angleX, angleY, angleZ, quaternion = array_create(4))
 {
 	/// https://github.com/JujuAdams/basic-quaternions/blob/master/scripts/QuatFromEulerAngles/QuatFromEulerAngles.gml
@@ -89,6 +92,7 @@ function ddd_quat_from_euler(angleX, angleY, angleZ, quaternion = array_create(4
 /// @desc Format quaternion into a string.
 /// @param {Array.Quaternion} quaternion Quaternion to format to string.
 /// @returns {String}
+/// @pure
 function ddd_quat_to_string(quaternion)
 {
     return string("Quaternion({0}, {1}, {2}, {3})", quaternion[0], quaternion[1], quaternion[2], quaternion[3]);
@@ -102,6 +106,7 @@ function ddd_quat_to_string(quaternion)
 /// @param {Real} z z-component.
 /// @param {Real} w w-component.
 /// @returns {Undefined}
+/// @pure
 function ddd_quat_set(quaternion, x, y, z, w)
 {
     quaternion[@ 0] = x;
@@ -115,6 +120,7 @@ function ddd_quat_set(quaternion, x, y, z, w)
 /// @param {Array.Quaternion} quaternion Quaternion to clone.
 /// @param {Array.Quaternion} [output] Quaternion to set the results to (optional).
 /// @returns {Array.Quaternion}
+/// @pure
 function ddd_quat_clone(quaternion, quaternionOut = array_create(4))
 {
     quaternionOut[@ 0] = quaternion[0];
@@ -129,6 +135,7 @@ function ddd_quat_clone(quaternion, quaternionOut = array_create(4))
 /// @param {Array.Quaternion} a Quaternion A to compare.
 /// @param {Array.Quaternion} b Quaternion B to compare.
 /// @returns {Bool}
+/// @pure
 function ddd_quat_equals(a, b)
 {
     return (a[0] == b[0]) && (a[1] == b[1]) && (a[2] == b[2]) && (a[3] == b[3]);
@@ -144,6 +151,7 @@ function ddd_quat_equals(a, b)
 /// @param {Array.Quaternion} b Quaternion B.
 /// @param {Array.Quaternion} [quaternion] Quaternion to multiply to (optional).
 /// @returns {Array.Quaternion}
+/// @pure
 function ddd_quat_multiply(a, b, quaternion = array_create(4))
 {
 	// Multiply
@@ -168,6 +176,7 @@ function ddd_quat_multiply(a, b, quaternion = array_create(4))
 /// @param {Real} s Scalar.
 /// @param {Array.Quaternion} [quaternion] Quaternion to scale to (optional).
 /// @returns {Array.Quaternion}
+/// @pure
 function ddd_quat_scale(a, s, quaternion = array_create(4))
 {
 	// Set
@@ -188,6 +197,7 @@ function ddd_quat_scale(a, s, quaternion = array_create(4))
 /// @desc Returns the magnitude of a given quaternion.
 /// @param {Array.Quaternion} quaternion The quaternion to return the magnitude of.
 /// @returns {Real}
+/// @pure
 function ddd_quat_magnitude(quaternion)
 {
 	return sqrt(quaternion[0] * quaternion[0] + quaternion[1] * quaternion[1] + quaternion[2] * quaternion[2] + quaternion[3] * quaternion[3]);
@@ -198,6 +208,7 @@ function ddd_quat_magnitude(quaternion)
 /// @param {Array.Quaternion} quaternionIn The quaternion to normalize.
 /// @param {Array.Quaternion} quaternionOut The quaternion to write to (optional).
 /// @returns {Array.Quaternion}
+/// @pure
 function ddd_quat_normalize(quaternionIn, quaternionOut = array_create(4))
 {
 	// Get magnitude of quaternion
@@ -227,6 +238,7 @@ function ddd_quat_normalize(quaternionIn, quaternionOut = array_create(4))
 /// @param {Array.Quaternion} quaternionIn The quaternion to conjugate.
 /// @param {Array.Quaternion} quaternionOut The quaternion to write to (optional).
 /// @returns {Array.Quaternion}
+/// @pure
 function ddd_quat_conjugate(quaternionIn, quaternionOut = array_create(4))
 {
 	quaternionOut[@ 0] = quaternionIn[0] * -1;
@@ -241,6 +253,7 @@ function ddd_quat_conjugate(quaternionIn, quaternionOut = array_create(4))
 /// @param {Array.Quaternion} quaternionIn The quaternion to invert.
 /// @param {Array.Quaternion} quaternionOut The quaternion to write to (optional).
 /// @returns {Array.Quaternion}
+/// @pure
 function ddd_quat_inverse(quaternionIn, quaternionOut = array_length(4))
 {
 	// Get magnitude^2
@@ -270,6 +283,7 @@ function ddd_quat_inverse(quaternionIn, quaternionOut = array_length(4))
 /// @param {Array.Quaternion} a Quaternion A.
 /// @param {Array.Quaternion} b Quaternion B.
 /// @returns {Real}
+/// @pure
 function ddd_quat_dot(a, b)
 {
 	return dot_product_3d(a[0], a[1], a[2], b[0], b[1], b[2]) + a[3] * b[3];
@@ -280,6 +294,7 @@ function ddd_quat_dot(a, b)
 /// @param {Array.Quaternion} quaternion Quaternion.
 /// @param {Array.Vec3} vector Vector to rotate.
 /// @returns {Array.Vec3}
+/// @pure
 function ddd_quat_rotate_vec3(quaternion, vec3)
 {
 	// Get vec3 as vec4
@@ -306,6 +321,7 @@ function ddd_quat_rotate_vec3(quaternion, vec3)
 /// @param {Real} amt Amount to interpolate by.
 /// @param {Array.Quaternion} [quaternion] Quaternion to lerp to (optional).
 /// @returns {Array.Quaternion}
+/// @pure
 function ddd_quat_flerp(a, b, amt, quaternion = array_create(4))
 {
 	// Lerp
@@ -325,6 +341,7 @@ function ddd_quat_flerp(a, b, amt, quaternion = array_create(4))
 /// @param {Real} amt Amount to interpolate by.
 /// @param {Array.Quaternion} [quaternion] Quaternion to lerp to (optional).
 /// @returns {Array.Quaternion}
+/// @pure
 function ddd_quat_lerp(a, b, amt, quaternion = array_create(4))
 {
 	// Locals of the quaternions
@@ -360,6 +377,7 @@ function ddd_quat_lerp(a, b, amt, quaternion = array_create(4))
 /// @param {Real} amt Amount to interpolate by.
 /// @param {Array.Quaternion} [quaternion] Quaternion to lerp to (optional).
 /// @returns {Array.Quaternion}
+/// @pure
 function ddd_quat_slerp(a, b, amt, quaternion = array_create(4))
 {
 	// Locals of the quaternions
@@ -418,6 +436,7 @@ function ddd_quat_slerp(a, b, amt, quaternion = array_create(4))
 /// @param {Real} amt Amount to interpolate by.
 /// @param {Array.Quaternion} [quaternion] Quaternion to lerp to (optional).
 /// @returns {Array.Quaternion}
+/// @pure
 function ddd_quat_nlerp(a, b, amt, quaternion = array_create(4))
 {
 	// Do normal lerp first
@@ -439,6 +458,7 @@ function ddd_quat_nlerp(a, b, amt, quaternion = array_create(4))
 /// @param {Array.Quaternion} quaternion The quaternion to convert.
 /// @param {Array.Vec4} [vec4] The vector to convert to [axisX, axisY, axisZ, angle (degrees)] (optional).
 /// @returns {Array.Vec4}
+/// @pure
 function ddd_quat_to_axis_angle(quaternion, vec4 = array_create(4))
 {
 	// Get angle and scale
@@ -471,6 +491,7 @@ function ddd_quat_to_axis_angle(quaternion, vec4 = array_create(4))
 /// @param {Array.Quaternion} quaternion The quaternion to convert.
 /// @param {Array.Vec3} [vec3] The vector to convert to [xAngle, yAngle, zAngle] (optional).
 /// @returns {Array.Vec3}
+/// @pure
 function ddd_quat_to_euler(quaternion, vec3 = array_create(3))
 {
 	// Local vars of quaternion components
@@ -509,6 +530,7 @@ function ddd_quat_to_euler(quaternion, vec3 = array_create(3))
 /// @param {Array.Matrix} matrix The rotation matrix to use.
 /// @param {Array.Quaternion} [quaternion] Quaternion to write (optional).
 /// @returns {Array.Quaternion}
+/// @pure
 function ddd_quat_from_rotation_matrix(matrix, quaternion = array_create(4))
 {
     /// https://github.com/mrdoob/three.js/blob/dev/src/math/Quaternion.js

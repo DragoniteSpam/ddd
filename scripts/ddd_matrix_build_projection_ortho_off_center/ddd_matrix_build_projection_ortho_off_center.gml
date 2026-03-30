@@ -16,6 +16,7 @@
 /// @param near
 /// @param far
 /// @param [resultMatrix]
+/// @pure
 
 function ddd_matrix_build_projection_ortho_off_center(left, top, right, bottom, near, far, result_matrix = undefined)
 {

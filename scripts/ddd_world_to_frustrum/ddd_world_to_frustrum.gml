@@ -18,6 +18,7 @@
 /// @param [worldMatrix]
 /// @param viewMatrix
 /// @param projMatrix
+/// @pure
 
 function ddd_world_to_frustrum(x, y, z, world_matrix = undefined, view_matrix, proj_matrix)
 {

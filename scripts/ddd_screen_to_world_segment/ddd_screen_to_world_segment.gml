@@ -16,6 +16,7 @@
 /// @param projMatrix
 /// @param screenWidth
 /// @param screenHeight
+/// @pure
 
 function ddd_screen_to_world_segment(x, y, view_matrix, proj_matrix, screen_width, screen_height)
 {
