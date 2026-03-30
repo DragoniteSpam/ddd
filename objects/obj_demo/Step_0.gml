@@ -1,30 +1,28 @@
-var mspd = 1
+var mspd = 0.5
 var xspeed = 0;
 var yspeed = 0;
 var zspeed = 0;
 
-var pitch = 0;
-
 if (keyboard_check(vk_up) || keyboard_check(ord("W"))) {
-    xspeed += dcos(dir) * mspd;
-    yspeed -= dsin(dir) * mspd;
-    zspeed -= dsin(pitch) * mspd;
+    xspeed += dcos(look_direction) * mspd;
+    yspeed -= dsin(look_direction) * mspd;
+    zspeed -= dsin(look_pitch) * mspd;
 }
 
 if (keyboard_check(vk_down) || keyboard_check(ord("S"))) {
-    xspeed -= dcos(dir) * mspd;
-    yspeed += dsin(dir) * mspd;
-    zspeed += dsin(pitch) * mspd;
+    xspeed -= dcos(look_direction) * mspd;
+    yspeed += dsin(look_direction) * mspd;
+    zspeed += dsin(look_pitch) * mspd;
 }
 
 if (keyboard_check(vk_left) || keyboard_check(ord("A"))) {
-    xspeed += dsin(dir) * mspd;
-    yspeed += dcos(dir) * mspd;
+    xspeed -= dsin(look_direction) * mspd;
+    yspeed -= dcos(look_direction) * mspd;
 }
 
 if (keyboard_check(vk_right) || keyboard_check(ord("D"))) {
-    xspeed -= dsin(dir) * mspd;
-    yspeed -= dcos(dir) * mspd;
+    xspeed += dsin(look_direction) * mspd;
+    yspeed += dcos(look_direction) * mspd;
 }
 
 if (mouse_check_button_pressed(mb_middle)) {
@@ -33,14 +31,12 @@ if (mouse_check_button_pressed(mb_middle)) {
 } else if (mouse_check_button(mb_middle)) {
     var dx = window_mouse_get_delta_x() / 10;
     var dy = window_mouse_get_delta_y() / 10;
-    ddd_vec3_rotate(lookat, ddd_vec3(0, 0, 1), dx, lookat);
+	look_direction = (360 + look_direction - dx) % 360;
+	look_pitch = clamp(look_pitch + dy, -89, 89);
 } else {
     window_mouse_set_locked(mouse_was_locked);
 }
+
 x += xspeed;
 y += yspeed;
 z += zspeed;
-
-repeat (1000) {
-    ddd_vec3_rotate(lookat, ddd_vec3(0, 0, 1), 0);
-}
