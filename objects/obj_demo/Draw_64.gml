@@ -1,0 +1,1 @@
+draw_surface_stretched(surf_shadowmap, 0, 0, 256, 256);

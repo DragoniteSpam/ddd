@@ -40,3 +40,7 @@ if (mouse_check_button_pressed(mb_middle)) {
 x += xspeed;
 y += yspeed;
 z += zspeed;
+
+array_foreach(things, function(thing) {
+	thing.update();
+});

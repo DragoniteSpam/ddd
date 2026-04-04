@@ -42,8 +42,11 @@ var threed_thing = function(source_mesh, source_position, source_rotation, sourc
 	rotation = source_rotation;
 	angular_velocity = source_angular_velocity;
 	
-	static draw = function() {
+	static update = function() {
 		rotation = ddd_quat_multiply(rotation, angular_velocity);
+	};
+	
+	static draw = function() {
 		var matrix = ddd_quat_to_rotation_matrix(rotation);
 		matrix = matrix_multiply(matrix, matrix_build(position[0], position[1], position[2], 0, 0, 0, 1, 1, 1));
 		matrix_set(matrix_world, matrix);
@@ -76,3 +79,6 @@ add_point(the_floor, ddd_vec3(-SIZE,  SIZE, 0), ddd_vec3(0, 0, 1), ddd_vec2( 0, 
 add_point(the_floor, ddd_vec3(-SIZE, -SIZE, 0), ddd_vec3(0, 0, 1), ddd_vec2( 0,  0), #66aaff, 1);
 vertex_end(the_floor);
 vertex_freeze(the_floor);
+
+surf_shadowmap = -1;
+light_matrices = undefined;
