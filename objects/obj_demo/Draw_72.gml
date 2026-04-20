@@ -10,11 +10,11 @@ if (!surface_exists(surf_shadowmap)) {
 
 surface_set_target(surf_shadowmap);
 
-	draw_clear(c_black);
+	draw_clear(c_white);
 	gpu_set_ztestenable(true);
 	gpu_set_zwriteenable(true);
 	
-	light_matrices = ddd_matrices_build_directional_light(-1, -1, -1, view_mat, proj_mat, 0);
+	light_matrices = ddd_matrices_build_directional_light(-1, -1, -1, view_mat, proj_mat, 100);
 	
 	matrix_set(matrix_view, light_matrices.view_matrix);
 	matrix_set(matrix_projection, light_matrices.proj_matrix);

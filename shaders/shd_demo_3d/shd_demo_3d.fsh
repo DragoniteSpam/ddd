@@ -31,7 +31,4 @@ void main()
 	light += NdotL * C2;
 	
 	gl_FragColor.rgb *= clamp(light, vec3(0), vec3(1));
-	
-	//gl_FragColor.rgb = vec3(texture2D(samp_shadowmap, v_ShadowTexcoord).r);
-	//gl_FragColor.rgb = vec3(v_ShadowTexcoord, 0);
 }
