@@ -80,5 +80,9 @@ add_point(the_floor, ddd_vec3(-SIZE, -SIZE, 0), ddd_vec3(0, 0, 1), ddd_vec2( 0, 
 vertex_end(the_floor);
 vertex_freeze(the_floor);
 
-surf_shadowmap = -1;
-light_matrices = undefined;
+surf_shadowmap_near = -1;
+light_matrices_near = { };
+surf_shadowmap_far = -1;
+light_matrices_far = { };
+
+window_enable_borderless_fullscreen(true);

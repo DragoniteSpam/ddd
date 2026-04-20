@@ -7,11 +7,17 @@ varying vec2 v_vTexcoord;
 varying vec4 v_vColour;
 varying vec3 v_vNormal;
 
-uniform mat4 u_lightViewMat;
-uniform mat4 u_lightProjMat;
+uniform mat4 u_lightViewMatNear;
+uniform mat4 u_lightProjMatNear;
 
-varying float v_LightDistance;
-varying vec2 v_ShadowTexcoord;
+varying float v_LightDistanceNear;
+varying vec2 v_ShadowTexcoordNear;
+
+uniform mat4 u_lightViewMatFar;
+uniform mat4 u_lightProjMatFar;
+
+varying float v_LightDistanceFar;
+varying vec2 v_ShadowTexcoordFar;
 
 void main()
 {
@@ -22,10 +28,17 @@ void main()
     v_vTexcoord = in_TextureCoord;
     
     vec4 worldSpace = gm_Matrices[MATRIX_WORLD] * vec4(in_Position, 1);
-    vec4 cameraSpace = u_lightViewMat * worldSpace;
-    vec4 screenSpace = u_lightProjMat * cameraSpace;
+    vec4 cameraSpace = u_lightViewMatNear * worldSpace;
+    vec4 screenSpace = u_lightProjMatNear * cameraSpace;
     
-    v_LightDistance = screenSpace.z / screenSpace.w;
-    v_ShadowTexcoord = ((screenSpace.xy / screenSpace.w) * 0.5) + 0.5;
-	v_ShadowTexcoord.y = 1.0 - v_ShadowTexcoord.y;
+    v_LightDistanceNear = screenSpace.z / screenSpace.w;
+    v_ShadowTexcoordNear = ((screenSpace.xy / screenSpace.w) * 0.5) + 0.5;
+	v_ShadowTexcoordNear.y = 1.0 - v_ShadowTexcoordNear.y;
+	
+    cameraSpace = u_lightViewMatFar * worldSpace;
+    screenSpace = u_lightProjMatFar * cameraSpace;
+    
+    v_LightDistanceFar = screenSpace.z / screenSpace.w;
+    v_ShadowTexcoordFar = ((screenSpace.xy / screenSpace.w) * 0.5) + 0.5;
+	v_ShadowTexcoordFar.y = 1.0 - v_ShadowTexcoordFar.y;
 }
