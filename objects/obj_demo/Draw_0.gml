@@ -7,8 +7,7 @@ gpu_set_texrepeat(true);
 gpu_set_texfilter(false);
 shader_set(shd_demo_3d);
 
-gpu_set_texrepeat_ext(shader_get_sampler_index(shd_demo_3d, "samp_shadowmap"), true);
-texture_set_stage(shader_get_sampler_index(shd_demo_3d, "samp_shadowmap"), surface_get_texture(surf_shadowmap));
+texture_set_stage(shader_get_sampler_index(shd_demo_3d, "samp_shadowmap"), surface_get_texture_depth(surf_shadowmap));
 shader_set_uniform_f_array(shader_get_uniform(shd_demo_3d, "u_lightViewMat"), light_matrices.view_matrix);
 shader_set_uniform_f_array(shader_get_uniform(shd_demo_3d, "u_lightProjMat"), light_matrices.proj_matrix);
 

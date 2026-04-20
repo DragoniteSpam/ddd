@@ -17,15 +17,17 @@ void main()
 	vec3 C2 = vec3(0.4);
 	vec3 ambient = vec3(0.1);
 	
-	float shadow_bias = 0.0005;
+	float shadow_bias = 0.001;
 	
 	float NdotL = dot(normalize(v_vNormal), L1);
 	vec3 light = ambient + NdotL * C1;
 	
 	float shadowmap_value = texture2D(samp_shadowmap, v_ShadowTexcoord).r;
-    if (v_LightDistance > shadowmap_value + shadow_bias) {
-        light = ambient;
-    }
+	if (v_ShadowTexcoord.x >= 0.0 && v_ShadowTexcoord.x <= 1.0 && v_ShadowTexcoord.y >= 0.0 && v_ShadowTexcoord.y <= 1.0) {
+	    if (v_LightDistance > shadowmap_value + shadow_bias) {
+	        light = ambient;
+	    }
+	}
 	
 	NdotL = dot(normalize(v_vNormal), L2);
 	light += NdotL * C2;
