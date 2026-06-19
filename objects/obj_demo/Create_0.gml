@@ -85,4 +85,7 @@ light_matrices_near = { };
 surf_shadowmap_far = -1;
 light_matrices_far = { };
 
+view_mat = matrix_build_identity();
+proj_mat = matrix_build_identity();
+
 window_enable_borderless_fullscreen(true);
