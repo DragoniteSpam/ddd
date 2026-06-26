@@ -21,7 +21,7 @@
 function ddd_matrix_build_projection_ortho_off_center(left, top, right, bottom, near, far, result_matrix = undefined)
 {
     //Flip the y-axis on OpenGL targets
-    if not ((os_browser == browser_not_a_browser) && ((os_type == os_windows) || (os_type == os_xboxone) || (os_type == os_xboxseriesxs)))
+    if not DDD_NORMATIVE
     {
         top    = -top;
         bottom = -bottom;
