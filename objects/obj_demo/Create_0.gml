@@ -4,6 +4,7 @@ z = 50;
 
 randomize();
 
+gamepad = undefined;
 look_direction = 45;
 look_pitch = 0;
 
