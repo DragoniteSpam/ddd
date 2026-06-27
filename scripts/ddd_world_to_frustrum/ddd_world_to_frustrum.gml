@@ -38,9 +38,9 @@ function ddd_world_to_frustrum(x, y, z, world_matrix = undefined, view_matrix, p
     matrix_transform_vertex(proj_matrix, result[0], result[1], result[2], result[3], result);
     
     var _w = result[3];
-    result[@ 0] /= _w;
-    result[@ 1] /= _w;
-    result[@ 2] /= _w;
-    result[@ 3]  =  1;
+    result[@ 0] /=  _w;
+    result[@ 1] /= -_w;
+    result[@ 2] /=  _w;
+    result[@ 3]  =   1;
     return result;
 }
