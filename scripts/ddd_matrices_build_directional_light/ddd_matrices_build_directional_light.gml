@@ -35,7 +35,7 @@ function ddd_matrices_build_directional_light(dx, dy, dz, cam_view_matrix, cam_p
     var frustrum_array = frustrum_array_static;
     
     //Build an inverse lookat matrix
-    ddd_matrix_build_lookat(-dx, -dy, -dz,   0,0,0,   (dz == 0)? 1 : 0,0,-sign(dz),   light_view_matrix);
+    matrix_build_lookat(-dx, -dy, -dz,   0,0,0,   (dz == 0)? 1 : 0,0,-sign(dz),   light_view_matrix);
     
     //Find all corners of the frustrum in world space from the perspective of the light
     with(ddd_frustrum_corners(cam_view_matrix, cam_proj_matrix))

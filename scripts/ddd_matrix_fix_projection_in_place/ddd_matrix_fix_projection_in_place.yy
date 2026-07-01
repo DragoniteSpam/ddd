@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"ddd_matrix_build_projection_ortho",
+  "%Name":"ddd_matrix_fix_projection_in_place",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"ddd_matrix_build_projection_ortho",
+  "name":"ddd_matrix_fix_projection_in_place",
   "parent":{
     "name":"Matrix Builders",
     "path":"folders/DDD/Matrix Builders.yy",
