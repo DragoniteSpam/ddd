@@ -1,3 +1,5 @@
+precision highp float;
+
 attribute vec3 in_Position;
 attribute vec3 in_Normal;
 attribute vec4 in_Colour;
@@ -9,15 +11,24 @@ varying vec3 v_vNormal;
 
 uniform mat4 u_lightViewMatNear;
 uniform mat4 u_lightProjMatNear;
-
-varying float v_LightDistanceNear;
-varying vec2 v_ShadowTexcoordNear;
+varying vec3 v_ShadowCoordNear;
 
 uniform mat4 u_lightViewMatFar;
 uniform mat4 u_lightProjMatFar;
+varying vec3 v_ShadowCoordFar;
 
-varying float v_LightDistanceFar;
-varying vec2 v_ShadowTexcoordFar;
+vec3 CorrectShadowCoords(vec3 texcoord)
+{
+    //Normalize x/y coordinate
+    texcoord.xy = 0.5*texcoord.xy + 0.5;
+    
+    #if defined(_YY_HLSL11_) || defined(_YY_PSSL_)
+        //Flip the y-axis on normative platforms
+        texcoord.y = 1.0 - texcoord.y;
+    #endif
+    
+    return texcoord;
+}
 
 void main()
 {
@@ -28,17 +39,12 @@ void main()
     v_vTexcoord = in_TextureCoord;
     
     vec4 worldSpace = gm_Matrices[MATRIX_WORLD] * vec4(in_Position, 1);
+    
     vec4 cameraSpace = u_lightViewMatNear * worldSpace;
     vec4 screenSpace = u_lightProjMatNear * cameraSpace;
-    
-    v_LightDistanceNear = screenSpace.z / screenSpace.w;
-    v_ShadowTexcoordNear = ((screenSpace.xy / screenSpace.w) * 0.5) + 0.5;
-	v_ShadowTexcoordNear.y = 1.0 - v_ShadowTexcoordNear.y;
+    v_ShadowCoordNear = CorrectShadowCoords(screenSpace.xyz / screenSpace.w);
 	
     cameraSpace = u_lightViewMatFar * worldSpace;
     screenSpace = u_lightProjMatFar * cameraSpace;
-    
-    v_LightDistanceFar = screenSpace.z / screenSpace.w;
-    v_ShadowTexcoordFar = ((screenSpace.xy / screenSpace.w) * 0.5) + 0.5;
-	v_ShadowTexcoordFar.y = 1.0 - v_ShadowTexcoordFar.y;
+    v_ShadowCoordFar = CorrectShadowCoords(screenSpace.xyz / screenSpace.w);
 }

@@ -1,16 +1,23 @@
+precision highp float;
+
 varying vec2 v_vTexcoord;
 varying vec4 v_vColour;
 varying vec3 v_vNormal;
 
 uniform sampler2D samp_shadowmap_near;
-
-varying float v_LightDistanceNear;
-varying vec2 v_ShadowTexcoordNear;
+varying vec3 v_ShadowCoordNear;
 
 uniform sampler2D samp_shadowmap_far;
+varying vec3 v_ShadowCoordFar;
 
-varying float v_LightDistanceFar;
-varying vec2 v_ShadowTexcoordFar;
+float SampleShadowmap(sampler2D sampler, vec2 texcoord)
+{
+    #if defined(_YY_HLSL11_) || defined(_YY_PSSL_)
+        return texture2D(sampler, texcoord).r;
+    #else
+        return 2.0*texture2D(sampler, texcoord).r - 1.0;
+    #endif
+}
 
 void main()
 {
@@ -27,20 +34,17 @@ void main()
 	float NdotL = dot(normalize(v_vNormal), L1);
 	vec3 light = ambient + NdotL * C1;
 	
-	if (v_ShadowTexcoordNear.x >= 0.0 && v_ShadowTexcoordNear.x <= 1.0 && v_ShadowTexcoordNear.y >= 0.0 && v_ShadowTexcoordNear.y <= 1.0) {
-		float shadowmap_value = texture2D(samp_shadowmap_near, v_ShadowTexcoordNear).r;
-	    if (v_LightDistanceNear > shadowmap_value + shadow_bias) {
+	if (v_ShadowCoordNear == clamp(v_ShadowCoordNear, 0.0, 1.0)) {
+	    if (v_ShadowCoordNear.z > SampleShadowmap(samp_shadowmap_near, v_ShadowCoordNear.xy) + shadow_bias) {
 	        light = ambient;
 	    }
 	}
-	
-	else if (v_ShadowTexcoordFar.x >= 0.0 && v_ShadowTexcoordFar.x <= 1.0 && v_ShadowTexcoordFar.y >= 0.0 && v_ShadowTexcoordFar.y <= 1.0) {
-		float shadowmap_value = texture2D(samp_shadowmap_far, v_ShadowTexcoordFar).r;
-	    if (v_LightDistanceFar > shadowmap_value + shadow_bias) {
+	else if (v_ShadowCoordFar == clamp(v_ShadowCoordFar, 0.0, 1.0)) {
+	    if (v_ShadowCoordFar.z > SampleShadowmap(samp_shadowmap_far, v_ShadowCoordFar.xy) + shadow_bias) {
 	        light = ambient;
 	    }
 	}
-	
+    
 	NdotL = dot(normalize(v_vNormal), L2);
 	light += NdotL * C2;
 	
