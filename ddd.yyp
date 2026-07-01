@@ -15,7 +15,6 @@
     {"$GMFolder":"","%Name":"GPU State","folderPath":"folders/DDD/GPU State.yy","name":"GPU State","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Matrix Builders","folderPath":"folders/DDD/Matrix Builders.yy","name":"Matrix Builders","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Number Theory","folderPath":"folders/DDD/Number Theory.yy","name":"Number Theory","resourceType":"GMFolder","resourceVersion":"2.0",},
-    {"$GMFolder":"","%Name":"Debug","folderPath":"folders/Debug.yy","name":"Debug","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Demo stuff","folderPath":"folders/Demo stuff.yy","name":"Demo stuff","resourceType":"GMFolder","resourceVersion":"2.0",},
   ],
   "ForcedPrefabProjectReferences":[],

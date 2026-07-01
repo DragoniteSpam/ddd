@@ -17,7 +17,7 @@ if (!surface_exists(surf_shadowmap_far)) {
 
 surface_set_target(surf_shadowmap_near);
 
-	draw_clear(c_white);
+	draw_clear(c_black);
 	gpu_set_ztestenable(true);
 	gpu_set_zwriteenable(true);
 	
@@ -38,7 +38,7 @@ surface_reset_target();
 
 surface_set_target(surf_shadowmap_far);
 
-	draw_clear(c_white);
+	draw_clear(c_black);
 	gpu_set_ztestenable(true);
 	gpu_set_zwriteenable(true);
 	
