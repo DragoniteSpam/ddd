@@ -9,6 +9,7 @@ function ddd_matrix_get_projection(result_matrix = undefined)
 {
     if (result_matrix == undefined)
     {
+        // feather ignore once GM1023
         if (DDD_NORMATIVE)
         {
             return matrix_get(matrix_projection);
@@ -21,6 +22,7 @@ function ddd_matrix_get_projection(result_matrix = undefined)
     }
     else
     {
+        // feather ignore once GM1023
         if (DDD_NORMATIVE)
         {
             matrix_get(matrix_projection, result_matrix);
