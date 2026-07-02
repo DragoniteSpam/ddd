@@ -20,13 +20,6 @@
 
 function ddd_matrix_build_projection_ortho_off_center(left, top, right, bottom, near, far, result_matrix = undefined)
 {
-    //Flip the y-axis on OpenGL targets
-    if not DDD_NORMATIVE
-    {
-        top    = -top;
-        bottom = -bottom;
-    }
-    
     if (is_array(result_matrix))
     {
         result_matrix[@  0] = 2 / (right - left);

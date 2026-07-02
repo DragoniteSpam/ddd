@@ -57,9 +57,10 @@ var threed_thing = function(source_mesh, source_position, source_rotation, sourc
 };
 
 var SIZE = 400;
+var COUNT = (os_type == os_switch)? 50 : 500;
 
 things = [];
-repeat (500) {
+repeat (COUNT) {
 	var position = ddd_vec3(random_range(-SIZE, SIZE), random_range(-SIZE, SIZE), random_range(0, SIZE / 4));
 	var rotation = ddd_quat_identity();
 	var angular_velocity = (random(100) < 10)
