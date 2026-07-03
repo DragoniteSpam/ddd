@@ -8,6 +8,7 @@
 
 function ddd_matrix_fix_projection_in_place(matrix)
 {
+    // feather ignore once GM1023
     if (not DDD_NORMATIVE)
     {
         matrix[@  1] = -matrix[ 1];

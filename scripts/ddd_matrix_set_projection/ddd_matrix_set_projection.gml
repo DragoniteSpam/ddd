@@ -7,5 +7,6 @@ function ddd_matrix_set_projection(matrix)
 {
     static static_matrix = matrix_build_identity();
     
+    // feather ignore once GM1023
     matrix_set(matrix_projection, DDD_NORMATIVE? matrix : ddd_matrix_fix_projection(matrix, static_matrix));
 }

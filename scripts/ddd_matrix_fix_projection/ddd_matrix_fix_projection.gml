@@ -9,16 +9,14 @@
 
 function ddd_matrix_fix_projection(matrix, result_matrix = undefined)
 {
-    if (result_matrix == undefined)
-    {
-        result_matrix = array_create(16);
-    }
+    result_matrix ??= array_create(16);
     
     if (matrix != result_matrix)
     {
         array_copy(result_matrix, 0, matrix, 0, 16);
     }
     
+    // feather ignore once GM1023
     if (not DDD_NORMATIVE)
     {
         result_matrix[@  1] = -result_matrix[ 1];
