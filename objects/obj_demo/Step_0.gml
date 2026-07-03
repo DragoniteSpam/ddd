@@ -89,6 +89,25 @@ x += xspeed;
 y += yspeed;
 z += zspeed;
 
-array_foreach(things, function(thing) {
+array_foreach(things, function(thing)
+{
 	thing.update();
 });
+
+if (setting_fullscreen != window_get_fullscreen())
+{
+    window_set_fullscreen(setting_fullscreen);
+}
+
+if (setting_things != array_length(things))
+{
+    if (setting_things < array_length(things))
+    {
+        array_resize(things, setting_things);
+    }
+    else
+    {
+        array_resize(things, 0);
+        spawn_things(setting_things, SIZE);
+    }
+}

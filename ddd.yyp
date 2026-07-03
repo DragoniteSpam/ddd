@@ -17,7 +17,9 @@
     {"$GMFolder":"","%Name":"Number Theory","folderPath":"folders/DDD/Number Theory.yy","name":"Number Theory","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Demo stuff","folderPath":"folders/Demo stuff.yy","name":"Demo stuff","resourceType":"GMFolder","resourceVersion":"2.0",},
   ],
-  "ForcedPrefabProjectReferences":[],
+  "ForcedPrefabProjectReferences":[
+    {"link":"io.gamemaker.sdfshaders-1.0.0","name":"io.gamemaker.sdfshaders-1.0.0","path":"io.gamemaker.sdfshaders-1.0.0.yyp",},
+  ],
   "IncludedFiles":[
     {"$GMIncludedFile":"","%Name":"boat_large.vbuff","CopyToMask":-1,"filePath":"datafiles/models","name":"boat_large.vbuff","resourceType":"GMIncludedFile","resourceVersion":"2.0",},
     {"$GMIncludedFile":"","%Name":"boat_small.vbuff","CopyToMask":-1,"filePath":"datafiles/models","name":"boat_small.vbuff","resourceType":"GMIncludedFile","resourceVersion":"2.0",},

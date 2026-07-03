@@ -7,13 +7,26 @@ proj_mat = matrix_build_projection_perspective_fov(60, window_get_width() / wind
 var proj_mat_light_near = matrix_build_projection_perspective_fov(60, window_get_width() / window_get_height(), 1, 150);
 var proj_mat_light_far = matrix_build_projection_perspective_fov(60, window_get_width() / window_get_height(), 150, 500);
 
-if (!surface_exists(surf_shadowmap_near)) {
-	surf_shadowmap_near = surface_create(2048, 2048);
+var surface_validate = function(surf, w, h)
+{
+    if (!surface_exists(surf))
+    {
+        return surface_create(w, h);
+    }
+    
+    if (surface_get_width(surf) != w || !surface_get_height(surf) != h)
+    {
+        surface_free(surf);
+        return surface_create(w, h);
+    }
+    
+    return surf;
 }
 
-if (!surface_exists(surf_shadowmap_far)) {
-	surf_shadowmap_far = surface_create(1024, 1024);
-}
+var shadowmap_near_size = power(2, floor(setting_shadowmap_size));
+var shadowmap_far_size = shadowmap_near_size / 2;
+surf_shadowmap_near = surface_validate(surf_shadowmap_near, shadowmap_near_size, shadowmap_near_size);
+surf_shadowmap_far = surface_validate(surf_shadowmap_far, shadowmap_far_size, shadowmap_far_size);
 
 surface_set_target(surf_shadowmap_near);
 
