@@ -16,7 +16,7 @@ function ddd_matrix_get_projection(result_matrix = undefined)
         }
         else
         {
-            result_matrix = matrix_get(matrix_projection, result_matrix);
+            result_matrix = matrix_get(matrix_projection);
             return ddd_matrix_fix_projection(result_matrix, result_matrix);
         }
     }
