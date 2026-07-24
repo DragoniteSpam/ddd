@@ -55,6 +55,7 @@
     {"id":{"name":"ddd_matrices_build_directional_light","path":"scripts/ddd_matrices_build_directional_light/ddd_matrices_build_directional_light.yy",},},
     {"id":{"name":"ddd_matrix_build_from_quat","path":"scripts/ddd_matrix_build_from_quat/ddd_matrix_build_from_quat.yy",},},
     {"id":{"name":"ddd_matrix_build_from_vectors","path":"scripts/ddd_matrix_build_from_vectors/ddd_matrix_build_from_vectors.yy",},},
+    {"id":{"name":"ddd_matrix_build_identity_ext","path":"scripts/ddd_matrix_build_identity_ext/ddd_matrix_build_identity_ext.yy",},},
     {"id":{"name":"ddd_matrix_build_projection_ortho_off_center","path":"scripts/ddd_matrix_build_projection_ortho_off_center/ddd_matrix_build_projection_ortho_off_center.yy",},},
     {"id":{"name":"ddd_matrix_fix_projection_in_place","path":"scripts/ddd_matrix_fix_projection_in_place/ddd_matrix_fix_projection_in_place.yy",},},
     {"id":{"name":"ddd_matrix_fix_projection","path":"scripts/ddd_matrix_fix_projection/ddd_matrix_fix_projection.yy",},},
