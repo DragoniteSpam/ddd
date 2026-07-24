@@ -618,3 +618,26 @@ function ddd_vec3_rotate(vec3, axis, angle, out = array_create(3)) {
     return out;
 }
 #endregion
+/**
+ * Transforms vector b such that it is orthogonal (at 90 degrees to) to vector a.
+ * @param {array<real>} a The first vec3
+ * @param {array<real>} b The second vec3
+ * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
+ * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ * @pure
+ */
+function ddd_vec3_orthogonalize(a, b, out = array_create(3)) {
+    var x1 = a[0];
+    var y1 = a[1];
+    var z1 = a[2];
+    var x2 = b[0];
+    var y2 = b[1];
+    var z2 = b[2];
+    
+    var dot = dot_product_3d(x1, y1, z1, x2, y2, z2);
+    out[@ 0] = x2 - x1*dot;
+    out[@ 1] = y2 - y1*dot;
+    out[@ 2] = z2 - z1*dot;
+    return out;
+};
+#endregion
