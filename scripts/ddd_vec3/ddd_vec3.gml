@@ -548,6 +548,20 @@ function ddd_vec3_cross(a, b, out = array_create(3)) {
 };
 
 /**
+ * Transforms a vector using a matrix.
+ * @param {array<real>} matrix  The matrix to use as the transformation
+ * @param {array<real>} vector  The vector to transform
+ * @param {array<real>} [w=1]   The "w" component of the vector. Typical values are 1 or 0. (optional)
+ * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
+ * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ * @pure
+ */
+function ddd_vec3_transform(matrix, vector, w = 1, out = array_create(3)) {
+    matrix_transform_vertex(matrix, vector[0], vector[1], vector[2], w, out);
+    return out;
+};
+
+/**
  * Move one vector towards another by an exact amount, while never overshooting.
  * @param {array<real>} a The vec3 to move from
  * @param {array<real>} b The vec3 to move to
