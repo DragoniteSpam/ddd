@@ -617,7 +617,7 @@ function ddd_vec3_rotate(vec3, axis, angle, out = array_create(3)) {
     
     return out;
 }
-#endregion
+
 /**
  * Transforms vector b such that it is orthogonal (at 90 degrees to) to vector a.
  * @param {array<real>} a The first vec3
@@ -640,4 +640,31 @@ function ddd_vec3_orthogonalize(a, b, out = array_create(3)) {
     out[@ 2] = z2 - z1*dot;
     return out;
 };
+
+/**
+ * Builds a transformation matrix from three vectors that define the position and orientation of the transform.
+ * @param {array<real>} from The first vec3
+ * @param {array<real>} forward The second vec3
+ * @param {array<real>} up The second vec3
+ * @param {array<real>} [out] A matrix to output the results into; a new one will be created if not provided (optional)
+ * @returns {array<real>} Returns a new matrix, or the `out` matrix with containing the result
+ * @pure
+ */
+function ddd_vec3_matrix_build(from, forward, up, out = array_create(16))
+{
+    static forwardStatic = array_create(3);
+    static upStatic   = array_create(3);
+    
+    var forwardWork = ddd_vec3_normalize(forward, forwardStatic);
+    var upWork = ddd_vec3_orthogonalize(forwardWork, up, upStatic);
+    ddd_vec3_normalize(upWork, upWork);
+    var right = ddd_vec3_cross(upWork, forwardWork);
+    
+    array_copy(out, 0, forward, 0, 3); out[@  3] = 0;
+    array_copy(out, 4, right,   0, 3); out[@  7] = 0;
+    array_copy(out, 8, up,      0, 3); out[@ 11] = 0;
+    array_copy(out, 0, from,    0, 3); out[@ 15] = 1;
+    
+    return out;
+}
 #endregion
