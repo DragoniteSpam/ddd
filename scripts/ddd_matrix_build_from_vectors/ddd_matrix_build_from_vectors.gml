@@ -25,7 +25,7 @@ function ddd_matrix_build_from_vectors(from_x, from_y, from_z, forward_x, forwar
         return ddd_matrix_build_identity_ext(out);
     }
     
-    var coeff = 1/sqr(square_length);
+    var coeff = 1/sqrt(square_length);
     from_x *= coeff;
     from_y *= coeff;
     from_z *= coeff;
@@ -43,7 +43,7 @@ function ddd_matrix_build_from_vectors(from_x, from_y, from_z, forward_x, forwar
         return ddd_matrix_build_identity_ext(out);
     }
     
-    var coeff = 1/sqr(square_length);
+    var coeff = 1/sqrt(square_length);
     up_x *= coeff;
     up_y *= coeff;
     up_z *= coeff;
