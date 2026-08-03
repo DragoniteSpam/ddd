@@ -548,6 +548,20 @@ function ddd_vec3_cross(a, b, out = array_create(3)) {
 };
 
 /**
+ * Transforms a vector using a matrix.
+ * @param {array<real>} matrix  The matrix to use as the transformation
+ * @param {array<real>} vector  The vector to transform
+ * @param {array<real>} [w=1]   The "w" component of the vector. Typical values are 1 or 0. (optional)
+ * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
+ * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ * @pure
+ */
+function ddd_vec3_transform(matrix, vector, w = 1, out = array_create(3)) {
+    matrix_transform_vertex(matrix, vector[0], vector[1], vector[2], w, out);
+    return out;
+};
+
+/**
  * Move one vector towards another by an exact amount, while never overshooting.
  * @param {array<real>} a The vec3 to move from
  * @param {array<real>} b The vec3 to move to
@@ -614,6 +628,56 @@ function ddd_vec3_rotate(vec3, axis, angle, out = array_create(3)) {
     out[@ 0] = (v0 * cosine) + (a1 * v2 - v1 * a2) * sine + (a0 * dot);
     out[@ 1] = (v1 * cosine) + (a2 * v0 - v2 * a0) * sine + (a1 * dot);
     out[@ 2] = (v2 * cosine) + (a0 * v1 - v0 * a1) * sine + (a2 * dot);
+    
+    return out;
+}
+
+/**
+ * Transforms vector b such that it is orthogonal (at 90 degrees to) to vector a.
+ * @param {array<real>} a The first vec3
+ * @param {array<real>} b The second vec3
+ * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
+ * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ * @pure
+ */
+function ddd_vec3_orthogonalize(a, b, out = array_create(3)) {
+    var x1 = a[0];
+    var y1 = a[1];
+    var z1 = a[2];
+    var x2 = b[0];
+    var y2 = b[1];
+    var z2 = b[2];
+    
+    var dot = dot_product_3d(x1, y1, z1, x2, y2, z2);
+    out[@ 0] = x2 - x1*dot;
+    out[@ 1] = y2 - y1*dot;
+    out[@ 2] = z2 - z1*dot;
+    return out;
+};
+
+/**
+ * Builds a transformation matrix from three vectors that define the position and orientation of the transform.
+ * @param {array<real>} from The first vec3
+ * @param {array<real>} forward The second vec3
+ * @param {array<real>} up The second vec3
+ * @param {array<real>} [out] A matrix to output the results into; a new one will be created if not provided (optional)
+ * @returns {array<real>} Returns a new matrix, or the `out` matrix with containing the result
+ * @pure
+ */
+function ddd_vec3_matrix_build(from, forward, up, out = array_create(16))
+{
+    static forwardStatic = array_create(3);
+    static upStatic   = array_create(3);
+    
+    var forwardWork = ddd_vec3_normalize(forward, forwardStatic);
+    var upWork = ddd_vec3_orthogonalize(forwardWork, up, upStatic);
+    ddd_vec3_normalize(upWork, upWork);
+    var right = ddd_vec3_cross(upWork, forwardWork);
+    
+    array_copy(out, 0, forward, 0, 3); out[@  3] = 0;
+    array_copy(out, 4, right,   0, 3); out[@  7] = 0;
+    array_copy(out, 8, up,      0, 3); out[@ 11] = 0;
+    array_copy(out, 0, from,    0, 3); out[@ 15] = 1;
     
     return out;
 }
