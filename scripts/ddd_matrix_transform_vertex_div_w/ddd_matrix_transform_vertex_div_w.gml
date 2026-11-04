@@ -11,7 +11,7 @@
 /// @param [result_array]
 /// @pure
 
-function ddd_matrix_transform_vertex_div_w(matrix, x, y, z, w, result_array = [])
+function ddd_matrix_transform_vertex_div_w(matrix, x, y, z, w, result_array = array_create(4, 0))
 {
     matrix_transform_vertex(matrix, x, y, z, w, result_array);
     
