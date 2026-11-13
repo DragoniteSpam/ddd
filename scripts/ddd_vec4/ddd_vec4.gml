@@ -568,7 +568,15 @@ function ddd_vec4_angle(a, b) {
  * @pure
  */
 function ddd_vec4_approach(a, b, amount, out = array_create(4)) {
-    var total_dist = sqrt(b[0] * a[0] + b[1] * a[1] + b[2] * a[2] + b[3] * a[3]);
+    if (a[0] == b[0] and a[1] == b[1] and a[2] == b[2] and a[3] == b[3]) {
+        out[@ 0] = a[0];
+        out[@ 1] = a[1];
+        out[@ 2] = a[2];
+        out[@ 3] = a[3];
+        return out;
+    }
+    
+    var total_dist = sqrt(sqr(b[0] - a[0]) + sqr(b[1] - a[1]) + sqr(b[2] - a[2]) + sqr(b[3] - a[3]));
     var dist = max(total_dist - amount, 0);
     var f = dist / total_dist;
     

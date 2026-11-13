@@ -509,6 +509,12 @@ function ddd_vec2_angle(a, b) {
  * @pure
  */
 function ddd_vec2_approach(a, b, amount, out = array_create(2)) {
+    if (a[0] == b[0] and a[1] == b[1]) {
+        out[@ 0] = a[0];
+        out[@ 1] = a[1];
+        return out;
+    }
+    
     var total_dist = point_distance(b[0], b[1], a[0], a[1]);
     var dist = max(total_dist - amount, 0);
     var f = dist / total_dist;
