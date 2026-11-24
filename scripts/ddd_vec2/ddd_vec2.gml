@@ -569,11 +569,11 @@ function ddd_vec2_approach(a, b, amount, out = array_create(2)) {
 function ddd_vec2_slerp(a, b, amount, out = array_create(2)) {
     var dot = dot_product_normalized(a[0], a[1], b[0], b[1]);
     var theta = arccos(dot) * amount;
-    var relative_sub = ddd_vec2_sub(b, a);
-    var relative_product = ddd_vec2_mul(relative_sub, dot);
+    var relative_sub = ddd_vec2_sub_vec2(b, a);
+    var relative_product = ddd_vec2_mul_scalar(relative_sub, dot, relative_sub);
     ddd_vec2_normalize(relative_product, relative_product);
-    var relative_cos_product = ddd_vec2_mul(a, cos(theta));
-    var relative_sin_product = ddd_vec2_mul(relative_product, sin(theta));
+    var relative_cos_product = ddd_vec2_mul_scalar(a, cos(theta), out);
+    var relative_sin_product = ddd_vec2_mul_scalar(relative_product, sin(theta), relative_product);
     return ddd_vec2_add(relative_cos_product, relative_sin_product, out);
 }
 #endregion
