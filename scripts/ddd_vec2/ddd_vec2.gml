@@ -119,7 +119,7 @@ function ddd_vec2_add(vec2, operand, out = array_create(2)) {
 }
 
 /**
- * Performs addition between a vec2 and a scalar value, component-wise.
+ * Performs addition between a two vec2's, component-wise.
  * @param {array<real>} a The first vec2
  * @param {array<real>} b The second vec2
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
@@ -162,7 +162,7 @@ function ddd_vec2_sub(vec2, operand, out = array_create(2)) {
 }
 
 /**
- * Performs subtraction between a vec2 and a scalar value, component-wise.
+ * Performs subtraction between a two vec2's, component-wise.
  * @param {array<real>} a The first vec2
  * @param {array<real>} b The second vec2
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
@@ -205,7 +205,7 @@ function ddd_vec2_mul(vec2, operand, out = array_create(2)) {
 }
 
 /**
- * Performs multiplication between a vec2 and a scalar value, component-wise.
+ * Performs multiplication between two vec2's, component-wise.
  * @param {array<real>} a The first vec2
  * @param {array<real>} b The second vec2
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
@@ -235,6 +235,7 @@ function ddd_vec2_mul_scalar(vec2, scalar, out = array_create(2)) {
 /**
  * Performs division between a vec2 and another value, component-wise. The other value may be another vec2, or a scalar.
  * Use the specific vec2 division functions if you know what the type is for a mild performance boost.
+ * Does not check for division by zero.
  * @param {array<real>} vec2 The vector
  * @param {any} operand The operand, either a vector or a scalar
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
@@ -248,7 +249,8 @@ function ddd_vec2_div(vec2, operand, out = array_create(2)) {
 }
 
 /**
- * Performs division between a vec2 and a scalar value, component-wise.
+ * Performs division between two vec2's, component-wise.
+ * Does not check for division by zero.
  * @param {array<real>} a The first vec2
  * @param {array<real>} b The second vec2
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
@@ -263,6 +265,7 @@ function ddd_vec2_div_vec2(a, b, out = array_create(2)) {
 
 /**
  * Performs division between a vec2 and a scalar value.
+ * Does not check for division by zero.
  * @param {array<real>} vec2 The vector
  * @param {any*} scalar The scalar
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
@@ -467,6 +470,37 @@ function ddd_vec2_project(vec2, dir, out = array_create(2)) {
 }
 
 /**
+ * Reflects a vector on a surface determined by its normal vector
+ * https://www.khronos.org/files/opengles_shading_language.pdf#page=74
+ * @param {Array<real>} I incident vector
+ * @param {Array<real>} N normal vector of the reflective surface
+ * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
+ * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ * @pure
+ */
+function ddd_vec2_reflect(I, N, out = array_create(2)) {
+	var NdotI2 = ddd_vec2_dot(N, I) * 2;
+	out[@ 0] = I[0] - NdotI2 * N[0];
+	out[@ 1] = I[1] - NdotI2 * N[1];
+	return out;
+}
+
+/**
+ * Calculates a point along a line, given from a position and a direction
+ * @param {array<real>} o origin point of the line
+ * @param {array<real>} d direction of the line
+ * @param {real} t displacement along the line
+ * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
+ * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ * @pure
+ */
+function ddd_vec2_line(o, d, t, out = array_create(2)) {
+	out[@ 0] = o[0] + d[0] * t;
+	out[@ 1] = o[1] + d[1] * t;
+	return out;
+}
+
+/**
  * Linearly interpolates one vector to another, moving between the two by a specified percentage.
  * `amount` may be a vector or a scalar:
  * https://en.wikipedia.org/wiki/Linear_interpolation
@@ -538,11 +572,11 @@ function ddd_vec2_approach(a, b, amount, out = array_create(2)) {
 function ddd_vec2_slerp(a, b, amount, out = array_create(2)) {
     var dot = dot_product_normalized(a[0], a[1], b[0], b[1]);
     var theta = arccos(dot) * amount;
-    var relative_sub = ddd_vec2_sub(b, a);
-    var relative_product = ddd_vec2_mul(relative_sub, dot);
+    var relative_sub = ddd_vec2_sub_vec2(b, a);
+    var relative_product = ddd_vec2_mul_scalar(relative_sub, dot, relative_sub);
     ddd_vec2_normalize(relative_product, relative_product);
-    var relative_cos_product = ddd_vec2_mul(a, cos(theta));
-    var relative_sin_product = ddd_vec2_mul(relative_product, sin(theta));
+    var relative_cos_product = ddd_vec2_mul_scalar(a, cos(theta), out);
+    var relative_sin_product = ddd_vec2_mul_scalar(relative_product, sin(theta), relative_product);
     return ddd_vec2_add(relative_cos_product, relative_sin_product, out);
 }
 #endregion

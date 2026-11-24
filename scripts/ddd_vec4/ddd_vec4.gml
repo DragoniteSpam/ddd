@@ -131,7 +131,7 @@ function ddd_vec4_add(vec4, operand, out = array_create(4)) {
 }
 
 /**
- * Performs addition between a vec4 and a scalar value, component-wise.
+ * Performs addition between two vec4's, component-wise.
  * @param {array<real>} a The first vec4
  * @param {array<real>} b The second vec4
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
@@ -178,7 +178,7 @@ function ddd_vec4_sub(vec4, operand, out = array_create(4)) {
 }
 
 /**
- * Performs subtraction between a vec4 and a scalar value, component-wise.
+ * Performs subtraction between two vec4's, component-wise.
  * @param {array<real>} a The first vec4
  * @param {array<real>} b The second vec4
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
@@ -225,7 +225,7 @@ function ddd_vec4_mul(vec4, operand, out = array_create(4)) {
 }
 
 /**
- * Performs multiplication between a vec4 and a scalar value, component-wise.
+ * Performs multiplication between two vec4's, component-wise.
  * @param {array<real>} a The first vec4
  * @param {array<real>} b The second vec4
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
@@ -259,6 +259,7 @@ function ddd_vec4_mul_scalar(vec4, scalar, out = array_create(4)) {
 /**
  * Performs division between a vec4 and another value, component-wise. The other value may be another vec4, or a scalar.
  * Use the specific vec4 division functions if you know what the type is for a mild performance boost.
+ * Does not check for division by zero.
  * @param {array<real>} vec4 The vector
  * @param {any} operand The operand, either a vector or a scalar
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
@@ -272,7 +273,8 @@ function ddd_vec4_div(vec4, operand, out = array_create(4)) {
 }
 
 /**
- * Performs division between a vec4 and a scalar value, component-wise.
+ * Performs division between two vec4's, component-wise.
+ * Does not check for division by zero.
  * @param {array<real>} a The first vec4
  * @param {array<real>} b The second vec4
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
@@ -289,6 +291,7 @@ function ddd_vec4_div_vec4(a, b, out = array_create(4)) {
 
 /**
  * Performs division between a vec4 and a scalar value.
+ * Does not check for division by zero.
  * @param {array<real>} vec4 The vector
  * @param {any*} scalar The scalar
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
@@ -516,6 +519,41 @@ function ddd_vec4_project(vec4, dir, out = array_create(4)) {
 }
 
 /**
+ * Reflects a vector on a surface determined by its normal vector
+ * https://www.khronos.org/files/opengles_shading_language.pdf#page=74
+ * @param {Array<real>} I incident vector
+ * @param {Array<real>} N normal vector of the reflective surface
+ * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
+ * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ * @pure
+ */
+function ddd_vec4_reflect(I, N, out = array_create(4)) {
+	var NdotI2 = ddd_vec4_dot(N, I) * 2;
+	out[@ 0] = I[0] - NdotI2 * N[0];
+	out[@ 1] = I[1] - NdotI2 * N[1];
+	out[@ 2] = I[2] - NdotI2 * N[2];
+	out[@ 3] = I[3] - NdotI2 * N[3];
+	return out;
+}
+
+/**
+ * Calculates a point along a line, given from a position and a direction
+ * @param {array<real>} o origin point of the line
+ * @param {array<real>} d direction of the line
+ * @param {real} t displacement along the line
+ * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
+ * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ * @pure
+ */
+function ddd_vec4_line(o, d, t, out = array_create(4)) {
+	out[@ 0] = o[0] + d[0] * t;
+	out[@ 1] = o[1] + d[1] * t;
+	out[@ 2] = o[2] + d[2] * t;
+	out[@ 3] = o[3] + d[3] * t;
+	return out;
+}
+
+/**
  * Linearly interpolates one vector to another, moving between the two by a specified percentage.
  * `amount` may be a vector or a scalar:
  * https://en.wikipedia.org/wiki/Linear_interpolation
@@ -600,11 +638,11 @@ function ddd_vec4_approach(a, b, amount, out = array_create(4)) {
 function ddd_vec4_slerp(a, b, amount, out = array_create(4)) {
     var dot = dot_product_3d_normalized(a[0], a[1], a[2], b[0], b[1], b[2]) + a[3] * b[3];
     var theta = arccos(dot) * amount;
-    var relative_sub = ddd_vec4_sub(b, a);
-    var relative_product = ddd_vec4_mul(relative_sub, dot);
+    var relative_sub = ddd_vec4_sub_vec4(b, a);
+    var relative_product = ddd_vec4_mul_scalar(relative_sub, dot, relative_sub);
     ddd_vec4_normalize(relative_product, relative_product);
-    var relative_cos_product = ddd_vec4_mul(a, cos(theta));
-    var relative_sin_product = ddd_vec4_mul(relative_product, sin(theta));
+    var relative_cos_product = ddd_vec4_mul_scalar(a, cos(theta), out);
+    var relative_sin_product = ddd_vec4_mul_scalar(relative_product, sin(theta), relative_product);
     return ddd_vec4_add(relative_cos_product, relative_sin_product, out);
 }
 #endregion
