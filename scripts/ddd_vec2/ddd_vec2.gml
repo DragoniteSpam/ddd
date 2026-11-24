@@ -467,6 +467,37 @@ function ddd_vec2_project(vec2, dir, out = array_create(2)) {
 }
 
 /**
+ * Reflects a vector on a surface determined by its normal vector
+ * https://www.khronos.org/files/opengles_shading_language.pdf#page=74
+ * @param {Array<real>} I incident vector
+ * @param {Array<real>} N normal vector of the reflective surface
+ * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
+ * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ * @pure
+ */
+function ddd_vec2_reflect(I, N, out = array_create(2)) {
+	var NdotI2 = ddd_vec2_dot(N, I) * 2;
+	out[@ 0] = I[0] - NdotI2 * N[0];
+	out[@ 1] = I[1] - NdotI2 * N[1];
+	return out;
+}
+
+/**
+ * Calculates a point along a line, given from a position and a direction
+ * @param {array<real>} o origin point of the line
+ * @param {array<real>} d direction of the line
+ * @param {real} t displacement along the line
+ * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
+ * @returns {array<real>} Returns a new array, or the `out` array with containing the result
+ * @pure
+ */
+function ddd_vec2_line(o, d, t, out = array_create(2)) {
+	out[@ 0] = o[0] + d[0] * t;
+	out[@ 1] = o[1] + d[1] * t;
+	return out;
+}
+
+/**
  * Linearly interpolates one vector to another, moving between the two by a specified percentage.
  * `amount` may be a vector or a scalar:
  * https://en.wikipedia.org/wiki/Linear_interpolation
