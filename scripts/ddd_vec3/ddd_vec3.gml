@@ -125,7 +125,7 @@ function ddd_vec3_add(vec3, operand, out = array_create(3)) {
 }
 
 /**
- * Performs addition between a vec3 and a scalar value, component-wise.
+ * Performs addition between two vec3's, component-wise.
  * @param {array<real>} a The first vec3
  * @param {array<real>} b The second vec3
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
@@ -170,7 +170,7 @@ function ddd_vec3_sub(vec3, operand, out = array_create(3)) {
 }
 
 /**
- * Performs subtraction between a vec3 and a scalar value, component-wise.
+ * Performs subtraction between two vec3's, component-wise.
  * @param {array<real>} a The first vec3
  * @param {array<real>} b The second vec3
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
@@ -215,7 +215,7 @@ function ddd_vec3_mul(vec3, operand, out = array_create(3)) {
 }
 
 /**
- * Performs multiplication between a vec3 and a scalar value, component-wise.
+ * Performs multiplication between two vec3's, component-wise.
  * @param {array<real>} a The first vec3
  * @param {array<real>} b The second vec3
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
@@ -247,6 +247,7 @@ function ddd_vec3_mul_scalar(vec3, scalar, out = array_create(3)) {
 /**
  * Performs division between a vec3 and another value, component-wise. The other value may be another vec3, or a scalar.
  * Use the specific vec3 division functions if you know what the type is for a mild performance boost.
+ * Does not check for division by zero.
  * @param {array<real>} vec3 The vector
  * @param {any} operand The operand, either a vector or a scalar
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
@@ -260,7 +261,8 @@ function ddd_vec3_div(vec3, operand, out = array_create(3)) {
 }
 
 /**
- * Performs division between a vec3 and a scalar value, component-wise.
+ * Performs division between two vec3's, component-wise.
+ * Does not check for division by zero.
  * @param {array<real>} a The first vec3
  * @param {array<real>} b The second vec3
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
@@ -276,6 +278,7 @@ function ddd_vec3_div_vec3(a, b, out = array_create(3)) {
 
 /**
  * Performs division between a vec3 and a scalar value.
+ * Does not check for division by zero.
  * @param {array<real>} vec3 The vector
  * @param {any*} scalar The scalar
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)

@@ -131,7 +131,7 @@ function ddd_vec4_add(vec4, operand, out = array_create(4)) {
 }
 
 /**
- * Performs addition between a vec4 and a scalar value, component-wise.
+ * Performs addition between two vec4's, component-wise.
  * @param {array<real>} a The first vec4
  * @param {array<real>} b The second vec4
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
@@ -178,7 +178,7 @@ function ddd_vec4_sub(vec4, operand, out = array_create(4)) {
 }
 
 /**
- * Performs subtraction between a vec4 and a scalar value, component-wise.
+ * Performs subtraction between two vec4's, component-wise.
  * @param {array<real>} a The first vec4
  * @param {array<real>} b The second vec4
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
@@ -225,7 +225,7 @@ function ddd_vec4_mul(vec4, operand, out = array_create(4)) {
 }
 
 /**
- * Performs multiplication between a vec4 and a scalar value, component-wise.
+ * Performs multiplication between two vec4's, component-wise.
  * @param {array<real>} a The first vec4
  * @param {array<real>} b The second vec4
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
@@ -259,6 +259,7 @@ function ddd_vec4_mul_scalar(vec4, scalar, out = array_create(4)) {
 /**
  * Performs division between a vec4 and another value, component-wise. The other value may be another vec4, or a scalar.
  * Use the specific vec4 division functions if you know what the type is for a mild performance boost.
+ * Does not check for division by zero.
  * @param {array<real>} vec4 The vector
  * @param {any} operand The operand, either a vector or a scalar
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
@@ -272,7 +273,8 @@ function ddd_vec4_div(vec4, operand, out = array_create(4)) {
 }
 
 /**
- * Performs division between a vec4 and a scalar value, component-wise.
+ * Performs division between two vec4's, component-wise.
+ * Does not check for division by zero.
  * @param {array<real>} a The first vec4
  * @param {array<real>} b The second vec4
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
@@ -289,6 +291,7 @@ function ddd_vec4_div_vec4(a, b, out = array_create(4)) {
 
 /**
  * Performs division between a vec4 and a scalar value.
+ * Does not check for division by zero.
  * @param {array<real>} vec4 The vector
  * @param {any*} scalar The scalar
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)

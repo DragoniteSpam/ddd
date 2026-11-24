@@ -119,7 +119,7 @@ function ddd_vec2_add(vec2, operand, out = array_create(2)) {
 }
 
 /**
- * Performs addition between a vec2 and a scalar value, component-wise.
+ * Performs addition between a two vec2's, component-wise.
  * @param {array<real>} a The first vec2
  * @param {array<real>} b The second vec2
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
@@ -162,7 +162,7 @@ function ddd_vec2_sub(vec2, operand, out = array_create(2)) {
 }
 
 /**
- * Performs subtraction between a vec2 and a scalar value, component-wise.
+ * Performs subtraction between a two vec2's, component-wise.
  * @param {array<real>} a The first vec2
  * @param {array<real>} b The second vec2
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
@@ -205,7 +205,7 @@ function ddd_vec2_mul(vec2, operand, out = array_create(2)) {
 }
 
 /**
- * Performs multiplication between a vec2 and a scalar value, component-wise.
+ * Performs multiplication between two vec2's, component-wise.
  * @param {array<real>} a The first vec2
  * @param {array<real>} b The second vec2
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
@@ -235,6 +235,7 @@ function ddd_vec2_mul_scalar(vec2, scalar, out = array_create(2)) {
 /**
  * Performs division between a vec2 and another value, component-wise. The other value may be another vec2, or a scalar.
  * Use the specific vec2 division functions if you know what the type is for a mild performance boost.
+ * Does not check for division by zero.
  * @param {array<real>} vec2 The vector
  * @param {any} operand The operand, either a vector or a scalar
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
@@ -248,7 +249,8 @@ function ddd_vec2_div(vec2, operand, out = array_create(2)) {
 }
 
 /**
- * Performs division between a vec2 and a scalar value, component-wise.
+ * Performs division between two vec2's, component-wise.
+ * Does not check for division by zero.
  * @param {array<real>} a The first vec2
  * @param {array<real>} b The second vec2
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
@@ -263,6 +265,7 @@ function ddd_vec2_div_vec2(a, b, out = array_create(2)) {
 
 /**
  * Performs division between a vec2 and a scalar value.
+ * Does not check for division by zero.
  * @param {array<real>} vec2 The vector
  * @param {any*} scalar The scalar
  * @param {array<real>} [out] An array to output the results into; a new one will be created if not provided (optional)
